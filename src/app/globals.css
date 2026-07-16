@@ -24,6 +24,7 @@
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-toast-in: toast-in 0.3s ease-out;
+  --animate-trail: trail-pop 0.85s ease-out forwards;
 }
 
 @keyframes marquee {
@@ -43,6 +44,26 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Cursor image-trail: each photo pops in at the pointer, then shrinks and fades.
+   Positioned via left/top on the cursor; translate(-50%,-50%) centers it there. */
+@keyframes trail-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(0.35);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(1.12);
+  }
+  32% {
+    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(0.86);
   }
 }
 

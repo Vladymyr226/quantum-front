@@ -75,7 +75,7 @@ export function Lesson() {
       {/* Background Q mark (downloaded SVG — faint overlay) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-[62%] right-[1%] hidden aspect-[840/751] h-[76%] -translate-y-1/2 bg-[url('/marketing/Vector.svg')] bg-contain bg-no-repeat opacity-[20%] lg:block"
+        className="pointer-events-none absolute top-[62%] right-[1%] hidden aspect-840/751 h-[76%] -translate-y-1/2 bg-[url('/marketing/Vector.svg')] bg-contain bg-no-repeat opacity-[20%] lg:block"
       />
 
       <div className="relative mx-auto max-w-[1920px] space-y-10 px-5 py-20 lg:grid lg:grid-cols-[615px_1fr] lg:grid-rows-[auto_1fr] lg:space-y-0 lg:gap-x-[75px] lg:gap-y-12 lg:px-[70px] lg:py-[150px]">
@@ -115,7 +115,7 @@ export function Lesson() {
           <button
             type="button"
             onClick={() => setShowCaption((v) => !v)}
-            className="group relative block aspect-[615/600] w-full overflow-hidden rounded-[16px] bg-black/40"
+            className="group relative block aspect-615/600 w-full overflow-hidden rounded-[16px] bg-black/40"
           >
             <Image
               src="/marketing/Frame1.jpg"
@@ -207,10 +207,8 @@ export function Lesson() {
             >
               <CloseIcon className="size-6" />
             </button>
-            <p className="pr-8 leading-tight text-[32px]">
-              Дякуємо!
-            </p>
-            <p className="mt-2 text-[#262626]/70 text-[22px]">
+            <p className="pr-8 text-[32px] leading-tight">Дякуємо!</p>
+            <p className="mt-2 text-[22px] text-[#262626]/70">
               Менеджер надішле урок найближчим часом.
             </p>
           </div>

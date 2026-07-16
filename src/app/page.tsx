@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Courses } from "@/components/sections/Courses";
 import { Lesson } from "@/components/sections/Lesson";
 import { Articles } from "@/components/sections/Articles";
+import { FinalCta } from "@/components/sections/FinalCta";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Courses />
       <Lesson />
       <Articles />
+      <FinalCta />
     </main>
   );
 }

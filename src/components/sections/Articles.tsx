@@ -33,7 +33,7 @@ export function Articles() {
       <div className="mx-auto grid max-w-[1920px] gap-x-[70px] gap-y-14 px-5 py-20 lg:grid-cols-2 lg:px-[70px] lg:py-[130px]">
         {ARTICLES.map((a) => (
           <article key={a.title} className="min-w-0">
-            <div className="relative aspect-[796/393] w-full overflow-hidden rounded-[12px] bg-black/5">
+            <div className="relative aspect-796/393 w-full overflow-hidden rounded-[12px] bg-black/5">
               <Image
                 src={a.img}
                 alt={a.alt}
