@@ -1,0 +1,221 @@
+"use client";
+
+import Image from "next/image";
+import { type FormEvent, useState } from "react";
+
+function ArrowRight({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M5 12.5 10 17.5 19 7" />
+    </svg>
+  );
+}
+
+function CloseIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M6 6 18 18M18 6 6 18" />
+    </svg>
+  );
+}
+
+/**
+ * "Що таке афілейт маркетинг?" — free-lesson section (dark block).
+ * Clicking the video reveals a caption (the video itself does not play).
+ * Figma: PC 30:103, MOB 30:583.
+ */
+export function Lesson() {
+  const [showCaption, setShowCaption] = useState(false);
+  const [telegram, setTelegram] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [showThanks, setShowThanks] = useState(false);
+
+  // Stub — no real backend yet. "Sends" the Telegram handle from the input,
+  // swaps the button (text + icon) and shows the thank-you popup.
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setSubmitted(true);
+    setShowThanks(true);
+  }
+
+  return (
+    <section className="relative overflow-hidden bg-[#2b2b2b] text-foreground">
+      {/* Background Q mark (downloaded SVG — faint overlay) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-[62%] right-[1%] hidden aspect-[840/751] h-[76%] -translate-y-1/2 bg-[url('/marketing/Vector.svg')] bg-contain bg-no-repeat opacity-[20%] lg:block"
+      />
+
+      <div className="relative mx-auto max-w-[1920px] space-y-10 px-5 py-20 lg:grid lg:grid-cols-[615px_1fr] lg:grid-rows-[auto_1fr] lg:space-y-0 lg:gap-x-[75px] lg:gap-y-12 lg:px-[70px] lg:py-[150px]">
+        {/* Text — top-right on desktop, first on mobile */}
+        <div className="min-w-0 lg:col-start-2 lg:row-start-1">
+          <h2 className="font-heading text-[50px] leading-[1.1] font-bold tracking-[-0.03em] uppercase lg:text-[60px]">
+            Що таке афілейт маркетинг?
+          </h2>
+
+          <div className="mt-8 flex items-center gap-3 lg:mt-10">
+            <span className="size-[15px] shrink-0 rounded-[4px] bg-foreground lg:size-[17px]" />
+            <span className="text-[28px] font-bold lg:text-[32px]">
+              Безкоштовний урок
+            </span>
+          </div>
+
+          <dl className="mt-8 space-y-6 lg:mt-10">
+            <div>
+              <dt className="text-[14px] tracking-[-0.01em] text-muted">
+                / про що
+              </dt>
+              <dd className="mt-1.5 text-[22px] leading-[1.2] lg:text-[32px]">
+                Пояснює як влаштована сфера і де тут гроші
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[14px] tracking-[-0.01em] text-muted">
+                / тривалість
+              </dt>
+              <dd className="mt-1.5 text-[22px] lg:text-[32px]">40 хв</dd>
+            </div>
+          </dl>
+        </div>
+
+        {/* Video — left column (spans both rows) on desktop, middle on mobile */}
+        <div className="min-w-0 lg:col-start-1 lg:row-span-2 lg:row-start-1">
+          <button
+            type="button"
+            onClick={() => setShowCaption((v) => !v)}
+            className="group relative block aspect-[615/600] w-full overflow-hidden rounded-[16px] bg-black/40"
+          >
+            <Image
+              src="/marketing/Frame1.jpg"
+              alt="Безкоштовний урок — що таке афілейт маркетинг"
+              fill
+              sizes="(max-width: 1024px) 100vw, 615px"
+              className="object-cover"
+            />
+
+            {/* Play button (decorative — the video does not play) */}
+            <span className="pointer-events-none absolute inset-0 grid place-items-center">
+              <span className="grid size-[76px] place-items-center rounded-full bg-white text-[#262626] shadow-lg transition-transform duration-300 group-hover:scale-105 lg:size-[92px]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  aria-hidden="true"
+                  className="size-10 translate-x-0.5 lg:size-15"
+                >
+                  <path d="M9 6.5 18.5 12 9 17.5Z" />
+                </svg>
+              </span>
+            </span>
+
+            {/* Caption — appears on click */}
+            <span
+              className={`absolute inset-x-12 bottom-12 rounded-[10px] bg-black/85 px-12 py-4 text-center text-[14px] text-white backdrop-blur-sm transition-all duration-300 lg:text-[22px] ${
+                showCaption
+                  ? "translate-y-0 opacity-100"
+                  : "pointer-events-none translate-y-3 opacity-0"
+              }`}
+            >
+              Щоб отримати урок{" "}
+              <span className="font-semibold">залиш твій Telegram</span>
+            </span>
+          </button>
+        </div>
+
+        {/* Form — bottom-right on desktop, last on mobile */}
+        <div className="min-w-0 lg:col-start-2 lg:row-start-2 lg:self-end">
+          <form
+            onSubmit={handleSubmit}
+            className="relative flex w-full max-w-[626px] flex-col gap-3 sm:block"
+          >
+            {/* Input — full-width pill; on desktop the button sits inside on the right */}
+            <input
+              type="text"
+              placeholder="@Твій Telegram"
+              value={telegram}
+              onChange={(e) => setTelegram(e.target.value)}
+              className="h-[70px] w-full rounded-[16px] border border-white bg-transparent px-6 text-center text-[20px] text-foreground placeholder:text-white focus:border-white/40 focus:outline-none sm:w-[340px]"
+            />
+            {/* Button — full-width on mobile, inset on the right on desktop */}
+            <button
+              type="submit"
+              className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink sm:absolute sm:top-0 sm:right-0 sm:bottom-1.5 sm:w-[307px] sm:rounded-[12px]"
+            >
+              <span className="text-[22px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
+                {submitted ? "НАДІСЛАНО" : "ОТРИМАТИ УРОК"}
+              </span>
+              <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-[#2b2b2b] text-white transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95">
+                {submitted ? (
+                  <CheckIcon className="size-[18px]" />
+                ) : (
+                  <ArrowRight className="size-[18px]" />
+                )}
+              </i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Thank-you toast (stub submit) — bottom-right on desktop, bottom on mobile */}
+      {showThanks && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed right-5 bottom-5 left-5 z-50 animate-toast-in sm:left-auto sm:w-[590px]"
+        >
+          <div className="relative rounded-[16px] bg-white p-10 text-[#262626] shadow-2xl lg:p-16">
+            <button
+              type="button"
+              onClick={() => setShowThanks(false)}
+              aria-label="Закрити"
+              className="absolute top-4 right-4 grid size-8 place-items-center transition-opacity hover:opacity-60"
+            >
+              <CloseIcon className="size-6" />
+            </button>
+            <p className="pr-8 leading-tight text-[32px]">
+              Дякуємо!
+            </p>
+            <p className="mt-2 text-[#262626]/70 text-[22px]">
+              Менеджер надішле урок найближчим часом.
+            </p>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}

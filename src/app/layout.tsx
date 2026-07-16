@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Archivo, Unbounded } from "next/font/google";
+import { Inter_Tight, Archivo, Wix_Madefor_Display } from "next/font/google";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -16,12 +16,12 @@ const archivo = Archivo({
   display: "swap",
 });
 
-// Cyrillic-capable display face for section headings (stand-in for the
-// commercial "Aktiv Grotesk Ex" — wide, bold).
-const unbounded = Unbounded({
+// Cyrillic-capable display face for section headings (neutral, Helvetica-like
+// stand-in for the commercial "Aktiv Grotesk Ex").
+const wixMadefor = Wix_Madefor_Display({
   subsets: ["latin", "cyrillic"],
-  variable: "--font-unbounded",
-  weight: ["700"],
+  variable: "--font-wix-madefor",
+  weight: ["700", "800"],
   display: "swap",
 });
 
@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="uk"
-      className={`${interTight.variable} ${archivo.variable} ${unbounded.variable} h-full antialiased`}
+      className={`${interTight.variable} ${archivo.variable} ${wixMadefor.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         {children}

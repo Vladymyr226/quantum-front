@@ -134,7 +134,7 @@ export function Courses() {
   }, []);
 
   return (
-    <section className="bg-surface text-ink">
+    <section id="courses" className="scroll-mt-5 bg-surface text-ink lg:scroll-mt-[70px]">
       <div className="mx-auto max-w-[1920px] px-5 py-20 lg:px-16 lg:py-[130px]">
         <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-[70px]">
           {/* Course list */}
