@@ -20,6 +20,7 @@
 
   --font-sans: var(--font-inter-tight);
   --font-display: var(--font-archivo);
+  --font-heading: var(--font-unbounded);
 
   --animate-marquee: marquee 40s linear infinite;
 }
