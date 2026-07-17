@@ -41,12 +41,23 @@ export type CoursePayoutData = {
   footerMobile: string[];
 };
 
+export type CourseAudienceItem = {
+  image: string;
+  caption: string;
+};
+
+export type CourseAudienceData = {
+  heading: string;
+  items: CourseAudienceItem[];
+};
+
 export type Course = {
   slug: string;
   title: string;
   hero: CourseHeroData;
   tasks?: CourseTasksData;
   payout?: CoursePayoutData;
+  audience?: CourseAudienceData;
 };
 
 const BG_DARK =
@@ -131,6 +142,31 @@ export const courses: Course[] = [
       footer: "Більше покупок = більше доходу",
       footerMobile: ["Більше", "покупок =", "більше доходу"],
     },
+    audience: {
+      heading: "Для кого цей курс",
+      items: [
+        {
+          image: "/courses/mediabuyer/audience/1.png",
+          caption: "Пробував трафік але\nщось пішло не так",
+        },
+        {
+          image: "/courses/mediabuyer/audience/2.png",
+          caption: "Переїхав за кордон\nі шукаєш варіанти",
+        },
+        {
+          image: "/courses/mediabuyer/audience/3.png",
+          caption: "Мав бізнес,\nале все змінилось",
+        },
+        {
+          image: "/courses/mediabuyer/audience/4.png",
+          caption: "Вже в діджиталі\nале хочеш більше",
+        },
+        {
+          image: "/courses/mediabuyer/audience/5.png",
+          caption: "Продавав все життя\nі втомився від людей",
+        },
+      ],
+    },
   },
   {
     slug: "affiliate",
@@ -186,6 +222,31 @@ export const courses: Course[] = [
         },
       ],
     },
+    audience: {
+      heading: "Для кого цей курс",
+      items: [
+        {
+          image: "/courses/affiliate/audience/1.png",
+          caption: "Переїхав за кордон і шукаєш варіанти",
+        },
+        {
+          image: "/courses/affiliate/audience/2.png",
+          caption: "Кайфуєш від переговорів і нових знайомств",
+        },
+        {
+          image: "/courses/affiliate/audience/3.png",
+          caption: "Хочеш професію із подорожами по всьому світу",
+        },
+        {
+          image: "/courses/affiliate/audience/4.png",
+          caption: "Хочеш працювати віддалено і сам керувати своїм часом",
+        },
+        {
+          image: "/courses/affiliate/audience/5.png",
+          caption: "Хочеш в афілейт маркетинг але без запуску реклами",
+        },
+      ],
+    },
   },
   {
     slug: "smm",
@@ -200,6 +261,31 @@ export const courses: Course[] = [
       ctaLabel: "Дізнайся про формати та ціни",
       ctaHref: "#formats",
       background: BG_DARK,
+    },
+    audience: {
+      heading: "Для кого цей курс",
+      items: [
+        {
+          image: "/courses/smm/audience/1.png",
+          caption: "Хочеш вести красиві акаунти і заробляти на цьому",
+        },
+        {
+          image: "/courses/smm/audience/2.png",
+          caption: "Ведеш SMM але хочеш заробляти більше",
+        },
+        {
+          image: "/courses/smm/audience/3.png",
+          caption: "Хочеш працювати віддалено і сам керувати своїм часом",
+        },
+        {
+          image: "/courses/smm/audience/4.png",
+          caption: "Переїхав за кордон і шукаєш варіанти",
+        },
+        {
+          image: "/courses/smm/audience/5.png",
+          caption: "Мама в декреті і шукаєш дохід з дому",
+        },
+      ],
     },
   },
 ];
