@@ -5,6 +5,7 @@ import { CourseHero } from "@/components/course/CourseHero";
 import { CourseTasks } from "@/components/course/CourseTasks";
 import { CoursePayout } from "@/components/course/CoursePayout";
 import { CourseAudience } from "@/components/course/CourseAudience";
+import { CourseProgram } from "@/components/course/CourseProgram";
 import { courses, getCourse } from "@/content/courses";
 import { Footer } from "@/components/sections/Footer";
 
@@ -35,6 +36,7 @@ export default async function CoursePage({ params }: Params) {
       {course.tasks && <CourseTasks {...course.tasks} />}
       {course.payout && <CoursePayout {...course.payout} />}
       {course.audience && <CourseAudience {...course.audience} />}
+      {course.program && <CourseProgram {...course.program} />}
       <Footer />
     </main>
   );
