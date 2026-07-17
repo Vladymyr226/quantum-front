@@ -22,9 +22,9 @@ function TelegramIcon({ className }: { className?: string }) {
 }
 
 const COURSE_LINKS = [
-  { label: "Медіабаєр", href: "#courses" },
-  { label: "Афілейт спеціаліст", href: "#courses" },
-  { label: "SMM спеціаліст", href: "#courses" },
+  { label: "Медіабаєр", href: "/courses/mediabuyer" },
+  { label: "Афілейт спеціаліст", href: "/courses/affiliate" },
+  { label: "SMM спеціаліст", href: "/courses/smm" },
 ];
 
 const LEGAL_LINKS = [

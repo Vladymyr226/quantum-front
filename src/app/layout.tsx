@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Archivo, Wix_Madefor_Display } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -8,20 +9,15 @@ const interTight = Inter_Tight({
   display: "swap",
 });
 
-// Stand-in for the Figma display face "Aktiv Grotesk Ex" (commercial).
-// Swap for the licensed font later without touching component code.
-const archivo = Archivo({
-  subsets: ["latin"],
-  variable: "--font-archivo",
-  display: "swap",
-});
-
-// Cyrillic-capable display face for section headings (neutral, Helvetica-like
-// stand-in for the commercial "Aktiv Grotesk Ex").
-const wixMadefor = Wix_Madefor_Display({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-wix-madefor",
-  weight: ["700", "800"],
+// The Figma display face — Aktiv Grotesk Ex (licensed, self-hosted). Used for
+// the QUANTUM wordmark and every section/course heading. Has full Cyrillic.
+const aktivGroteskEx = localFont({
+  src: [
+    { path: "../fonts/AktivGroteskEx_Bd.ttf", weight: "700", style: "normal" },
+    { path: "../fonts/AktivGroteskEx_XBd.ttf", weight: "800", style: "normal" },
+    { path: "../fonts/AktivGroteskEx_Blk.ttf", weight: "900", style: "normal" },
+  ],
+  variable: "--font-aktiv",
   display: "swap",
 });
 
@@ -39,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="uk"
-      className={`${interTight.variable} ${archivo.variable} ${wixMadefor.variable} h-full antialiased`}
+      className={`${interTight.variable} ${aktivGroteskEx.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         {children}

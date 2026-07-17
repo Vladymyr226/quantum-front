@@ -19,8 +19,8 @@
   --color-surface: var(--surface);
 
   --font-sans: var(--font-inter-tight);
-  --font-display: var(--font-archivo);
-  --font-heading: var(--font-wix-madefor);
+  --font-display: var(--font-aktiv);
+  --font-heading: var(--font-aktiv);
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-toast-in: toast-in 0.3s ease-out;

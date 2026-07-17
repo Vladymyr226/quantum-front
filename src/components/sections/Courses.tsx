@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Course = {
   n: string;
+  slug: string;
   title: string;
   desc: string;
   photos: string[];
@@ -13,6 +15,7 @@ type Course = {
 const COURSES: Course[] = [
   {
     n: "01",
+    slug: "mediabuyer",
     title: "Медіабаєр",
     desc: "Практичний курс по генерації трафіку, орієнтований на результат та ефективність",
     photos: [
@@ -35,6 +38,7 @@ const COURSES: Course[] = [
   },
   {
     n: "02",
+    slug: "affiliate",
     title: "Афілейт спеціаліст",
     desc: "Навчись працювати з оферами і партнерками та монетизуй трафік в десятки разів",
     photos: [
@@ -51,6 +55,7 @@ const COURSES: Course[] = [
   },
   {
     n: "03",
+    slug: "smm",
     title: "SMM спеціаліст",
     desc: "Курс для тих, хто хоче вести соцмережі професійно і коштувати на ринку",
     photos: [
@@ -146,18 +151,20 @@ export function Courses() {
                 onMouseLeave={() => setHover(null)}
                 className="border-t border-[#dddddc] pt-7 pb-8 lg:pt-[50px] lg:pb-[34px]"
               >
-                <h3 className="font-heading text-[46px] leading-[1.1] font-bold tracking-[-0.05em] uppercase lg:text-[70px]">
-                  {c.title}
-                </h3>
+                <Link href={`/courses/${c.slug}`} className="group block">
+                  <h3 className="font-heading text-[46px] leading-[1.1] font-bold tracking-[-0.05em] uppercase transition-opacity group-hover:opacity-60 lg:text-[70px]">
+                    {c.title}
+                  </h3>
 
-                <div className="mt-2 flex items-start justify-between gap-6 lg:mt-3 lg:items-center">
-                  <p className="max-w-[300px] text-[16px] leading-[1.1] lg:max-w-[460px] lg:text-[22px]">
-                    {c.desc}
-                  </p>
-                  <span className="shrink-0 text-[14px] text-muted lg:text-[22px]">
-                    / {c.n}
-                  </span>
-                </div>
+                  <div className="mt-2 flex items-start justify-between gap-6 lg:mt-3 lg:items-center">
+                    <p className="max-w-[300px] text-[16px] leading-[1.1] lg:max-w-[460px] lg:text-[22px]">
+                      {c.desc}
+                    </p>
+                    <span className="shrink-0 text-[14px] text-muted lg:text-[22px]">
+                      / {c.n}
+                    </span>
+                  </div>
+                </Link>
 
                 {/* Mobile photo — loops through the category */}
                 <PhotoStack
