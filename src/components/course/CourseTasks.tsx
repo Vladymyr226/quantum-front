@@ -110,7 +110,7 @@ export function CourseTasks({
 }: CourseTasksData) {
   return (
     <section className="bg-[#f2f2f2] text-ink">
-      <div className="mx-auto max-w-[1320px] px-5 py-20 lg:px-6 lg:py-[120px]">
+      <div className="mx-auto max-w-[1600px] px-5 pt-20 pb-[106px] lg:px-10 lg:pt-[120px] lg:pb-20">
         <div>
           <h2 className="font-heading text-[36px] leading-[1.02] font-bold tracking-[-0.02em] whitespace-pre-line uppercase lg:text-[48px]">
             {heading}

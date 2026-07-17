@@ -13,6 +13,7 @@ const interTight = Inter_Tight({
 // the QUANTUM wordmark and every section/course heading. Has full Cyrillic.
 const aktivGroteskEx = localFont({
   src: [
+    { path: "../fonts/AktivGroteskEx_Rg.ttf", weight: "400", style: "normal" },
     { path: "../fonts/AktivGroteskEx_Bd.ttf", weight: "700", style: "normal" },
     { path: "../fonts/AktivGroteskEx_XBd.ttf", weight: "800", style: "normal" },
     { path: "../fonts/AktivGroteskEx_Blk.ttf", weight: "900", style: "normal" },

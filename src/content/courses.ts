@@ -24,11 +24,29 @@ export type CourseTasksData = {
   tasks: CourseTask[];
 };
 
+export type CoursePayoutTier = {
+  count: number;
+  amount: string;
+};
+
+export type CoursePayoutData = {
+  heading: string[];
+  headingMobile: string[];
+  image: string;
+  imageAlt: string;
+  personIcon: string;
+  arrowIcon: string;
+  tiers: CoursePayoutTier[];
+  footer: string;
+  footerMobile: string[];
+};
+
 export type Course = {
   slug: string;
   title: string;
   hero: CourseHeroData;
   tasks?: CourseTasksData;
+  payout?: CoursePayoutData;
 };
 
 const BG_DARK =
@@ -90,6 +108,28 @@ export const courses: Course[] = [
           imageAlt: "Проаналізувати результати",
         },
       ],
+    },
+    payout: {
+      heading: [
+        "Медіабаєр привів клієнта з рекламами,",
+        "клієнт купив товар — медіабаєр отримав виплату",
+      ],
+      headingMobile: [
+        "Медіабаєр привів клієнта",
+        "з рекламами, клієнт купив товар —",
+        "медіабаєр отримав виплату",
+      ],
+      image: "/courses/mediabuyer/payout/creative.png",
+      imageAlt: "Рекламний креатив CARDIOTENS",
+      personIcon: "/courses/mediabuyer/payout/person.svg",
+      arrowIcon: "/courses/mediabuyer/payout/arrow.svg",
+      tiers: [
+        { count: 1, amount: "20$" },
+        { count: 3, amount: "60$" },
+        { count: 10, amount: "200$" },
+      ],
+      footer: "Більше покупок = більше доходу",
+      footerMobile: ["Більше", "покупок =", "більше доходу"],
     },
   },
   {
