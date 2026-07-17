@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CourseHero } from "@/components/course/CourseHero";
+import { CourseTasks } from "@/components/course/CourseTasks";
 import { courses, getCourse } from "@/content/courses";
 import { Footer } from "@/components/sections/Footer";
 
@@ -29,6 +30,7 @@ export default async function CoursePage({ params }: Params) {
   return (
     <main className="w-full min-w-0 flex-1">
       <CourseHero {...course.hero} />
+      {course.tasks && <CourseTasks {...course.tasks} />}
       <Footer />
     </main>
   );

@@ -10,10 +10,25 @@ export type CourseHeroData = {
   vectorColor?: string;
 };
 
+export type CourseTask = {
+  number: string;
+  title: string;
+  image: string;
+  imageAlt: string;
+};
+
+export type CourseTasksData = {
+  heading: string;
+  description: string[];
+  centerTitle: string;
+  tasks: CourseTask[];
+};
+
 export type Course = {
   slug: string;
   title: string;
   hero: CourseHeroData;
+  tasks?: CourseTasksData;
 };
 
 const BG_DARK =
@@ -36,6 +51,46 @@ export const courses: Course[] = [
       ctaHref: "#formats",
       background: BG_DARK,
     },
+    tasks: {
+      heading: "Медіабаєр — це маркетолог",
+      description: [
+        "Його завдання — рекламувати товари інших бізнесів.",
+        "Без продажів, переговорів і доставки — це все завдання бізнесу.",
+      ],
+      centerTitle: "Завдання медіабаєра:",
+      tasks: [
+        {
+          number: "01",
+          title: "Обрати вигідний товар",
+          image: "/courses/mediabuyer/tasks/1.png",
+          imageAlt: "Обрати вигідний товар",
+        },
+        {
+          number: "02",
+          title: "Підготувати креатив",
+          image: "/courses/mediabuyer/tasks/2.png",
+          imageAlt: "Підготувати креатив",
+        },
+        {
+          number: "03",
+          title: "Вибрати готовий сайт",
+          image: "/courses/mediabuyer/tasks/3.png",
+          imageAlt: "Вибрати готовий сайт",
+        },
+        {
+          number: "04",
+          title: "Налаштувати рекламу",
+          image: "/courses/mediabuyer/tasks/4.png",
+          imageAlt: "Налаштувати рекламу",
+        },
+        {
+          number: "05",
+          title: "Проаналізувати результати",
+          image: "/courses/mediabuyer/tasks/5.png",
+          imageAlt: "Проаналізувати результати",
+        },
+      ],
+    },
   },
   {
     slug: "affiliate",
@@ -50,6 +105,46 @@ export const courses: Course[] = [
       ctaLabel: "Дізнайся про формати та ціни",
       ctaHref: "#formats",
       background: BG_BLUE,
+    },
+    tasks: {
+      heading: "Афілейт менеджер —\nце менеджер підтримки",
+      description: [
+        "Його завдання — підібрати медіабаєру вигідні товари для реклами.",
+        "Якщо медіабаєр заробляє — заробляє і афілейт менеджер.",
+      ],
+      centerTitle: "Завдання афілейта:",
+      tasks: [
+        {
+          number: "01",
+          title: "Підібрати вигідні товари для реклами",
+          image: "/courses/affiliate/tasks/1.png",
+          imageAlt: "Підібрати вигідні товари для реклами",
+        },
+        {
+          number: "02",
+          title: "Допомогти в організаційних моментах",
+          image: "/courses/affiliate/tasks/2.png",
+          imageAlt: "Допомогти в організаційних моментах",
+        },
+        {
+          number: "03",
+          title: "Перевірити результати медіабаєра",
+          image: "/courses/affiliate/tasks/3.png",
+          imageAlt: "Перевірити результати медіабаєра",
+        },
+        {
+          number: "04",
+          title: "Допомогти зарахувати винагороду",
+          image: "/courses/affiliate/tasks/4.png",
+          imageAlt: "Допомогти зарахувати винагороду",
+        },
+        {
+          number: "05",
+          title: "Розширювати базу партнерів медіабаєрів",
+          image: "/courses/affiliate/tasks/5.png",
+          imageAlt: "Розширювати базу партнерів медіабаєрів",
+        },
+      ],
     },
   },
   {
