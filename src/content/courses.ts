@@ -87,6 +87,10 @@ export type CourseCareerData = {
   positions: CareerPosition[];
 };
 
+export type CourseApplyData = {
+  subtitle: string;
+};
+
 export type Course = {
   slug: string;
   title: string;
@@ -96,6 +100,7 @@ export type Course = {
   audience?: CourseAudienceData;
   program?: CourseProgramData;
   career?: CourseCareerData;
+  apply?: CourseApplyData;
 };
 
 const BG_DARK =
@@ -333,6 +338,10 @@ export const courses: Course[] = [
         },
       ],
     },
+    apply: {
+      subtitle:
+        "За навичками медіабаєра — у Quantum.\nМи зв'яжемось і відповімо на всі\nпитання.",
+    },
   },
   {
     slug: "affiliate",
@@ -553,6 +562,10 @@ export const courses: Course[] = [
         },
       ],
     },
+    apply: {
+      subtitle:
+        "За навичками афілейт спеціаліста — у Quantum.\nМи зв'яжемось і відповімо на всі\nпитання.",
+    },
   },
   {
     slug: "smm",
@@ -740,6 +753,10 @@ export const courses: Course[] = [
           },
         },
       ],
+    },
+    apply: {
+      subtitle:
+        "За навичками SMM спеціаліста — у Quantum.\nМи зв'яжемось і відповімо на всі\nпитання.",
     },
   },
 ];
