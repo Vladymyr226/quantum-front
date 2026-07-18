@@ -7,6 +7,7 @@ import { CoursePayout } from "@/components/course/CoursePayout";
 import { CourseAudience } from "@/components/course/CourseAudience";
 import { CourseProgram } from "@/components/course/CourseProgram";
 import { CourseCareer } from "@/components/course/CourseCareer";
+import { CourseAgreement } from "@/components/course/CourseAgreement";
 import { courses, getCourse } from "@/content/courses";
 import { Footer } from "@/components/sections/Footer";
 
@@ -39,6 +40,7 @@ export default async function CoursePage({ params }: Params) {
       {course.audience && <CourseAudience {...course.audience} />}
       {course.program && <CourseProgram {...course.program} />}
       {course.career && <CourseCareer {...course.career} />}
+      <CourseAgreement />
       <Footer />
     </main>
   );
