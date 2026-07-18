@@ -62,6 +62,38 @@ export type CourseProgramData = {
   items: CourseProgramItem[];
 };
 
+/** Top pills on a job card. */
+export type CareerBadge = "hot" | "booking";
+
+export type CareerJob = {
+  title: string;
+  salary: string;
+  /** Optional pill next to the salary, e.g. "Вища за середню". */
+  salaryNote?: string;
+  badges?: CareerBadge[];
+  location: string;
+  description: string;
+  /** e.g. "5 днів тому" (may be absent). */
+  posted?: string;
+};
+
+export type CareerPosition = {
+  /** Clickable label on the right, e.g. "Медіабаєр — від $1200/міс". */
+  label: string;
+  job: CareerJob;
+};
+
+export type CourseCareerData = {
+  /** Big heading, one entry per line. */
+  heading: string[];
+  /** Subtitle as text runs; `bold` marks the emphasised span. */
+  subtitle: { text: string; bold?: boolean }[];
+  positionsTitle: string;
+  /** Background photo (dark). */
+  image: string;
+  positions: CareerPosition[];
+};
+
 export type Course = {
   slug: string;
   title: string;
@@ -70,6 +102,7 @@ export type Course = {
   payout?: CoursePayoutData;
   audience?: CourseAudienceData;
   program?: CourseProgramData;
+  career?: CourseCareerData;
 };
 
 const BG_DARK =
@@ -234,6 +267,79 @@ export const courses: Course[] = [
         },
       ],
     },
+    career: {
+      heading: ["Кар'єра", "після курсу"],
+      subtitle: [
+        { text: "Наш " },
+        { text: "кар'єрний менеджер", bold: true },
+        {
+          text: " допоможе скласти резюме, підготуватися до співбесіди та буде підтримувати на етапі працевлаштування.",
+        },
+      ],
+      positionsTitle: "Позиції на яких ти можеш працювати",
+      image: "/courses/mediabuyer/career/bg.png",
+      positions: [
+        {
+          label: "Асистент медіабаєра — від $500/міс",
+          job: {
+            title: "Помічник Media Buyer, Creative Assistant",
+            salary: "32000 грн",
+            location: "Київ",
+            description:
+              "Повна зайнятість. Також готові взяти студента. Ми шукаємо людину в команду Affiliate Marketing, яка буде допомагати з підготовкою рекламних креативів для Facebook та інших рекламних джерел. Це вакансія для тих, хто хоче працювати...",
+            posted: "5 днів тому",
+          },
+        },
+        {
+          label: "Медіабаєр — від $1200/міс",
+          job: {
+            title: "Media Buyer (Facebook)",
+            salary: "110 000–120 000 грн",
+            salaryNote: "Вища за середню",
+            badges: ["hot", "booking"],
+            location: "Київ",
+            description:
+              "Повна зайнятість. Досвід роботи від 1 року. FACEBOOK MEDIA BUYER CRYPTO в DMND (DIAMOND) Офіс, Київ. Full-time. Є бронювання. Вимоги: Досвід в аналогічній ролі 1+ рік (саме в крипто-вертикалі, з досвідом в інших...",
+          },
+        },
+        {
+          label: "Таргетолог — від $500/міс",
+          job: {
+            title: "Таргетолог",
+            salary: "40 000–80 000 грн",
+            location: "Агенція, Київ",
+            description:
+              "Повна зайнятість. Також готові взяти студента. Досвід роботи від 1 року. Cashio — рекрутингова агенція нового формату, яка спеціалізується на пошуку та розвитку талантів у сфері digital-маркетингу та арбітражу трафіку....",
+            posted: "2 дні тому",
+          },
+        },
+        {
+          label: "Графічний дизайнер — від $1000/міс",
+          job: {
+            title: "Графічний дизайнер",
+            salary: "55 000 грн",
+            salaryNote: "Вища за середню",
+            badges: ["booking"],
+            location: "Київ",
+            description:
+              "Повна зайнятість. Також готові взяти людину з інвалідністю. Досвід роботи від 5 років. Вища освіта. Ми — TAF Industries, military-tech компанія з виробництва та розробки військових технологій від FPV-дронів і безпілотників-камікадзе...",
+            posted: "вчора",
+          },
+        },
+        {
+          label: "Афілейт менеджер — від $800/міс",
+          job: {
+            title: "Affiliate manager",
+            salary: "40 000–120 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Київ, 5,4 км від центру",
+            description:
+              "Повна зайнятість. Також готові взяти студента. Досвід роботи від 1 року. 13Buyers відкриває вакансію на позицію Affiliate Manager у сфері Crypto. Про компанію: Ми — маркетингова компанія (Mediabuying Team), що динамічно...",
+            posted: "вчора",
+          },
+        },
+      ],
+    },
   },
   {
     slug: "affiliate",
@@ -380,6 +486,80 @@ export const courses: Course[] = [
         },
       ],
     },
+    career: {
+      heading: ["Кар'єра", "після курсу"],
+      subtitle: [
+        { text: "Наш " },
+        { text: "кар'єрний менеджер", bold: true },
+        {
+          text: " допоможе скласти резюме, підготуватися до співбесіди та буде підтримувати на етапі працевлаштування.",
+        },
+      ],
+      positionsTitle: "Позиції на яких ти можеш працювати",
+      image: "/courses/affiliate/career/bg.png",
+      positions: [
+        {
+          label: "Афілейт менеджер — від $800/міс",
+          job: {
+            title: "Affiliate manager",
+            salary: "40 000–120 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Київ, 5,4 км від центру",
+            description:
+              "Повна зайнятість. Також готові взяти студента. Досвід роботи від 1 року. 13Buyers відкриває вакансію на позицію Affiliate Manager у сфері Crypto. Про компанію: Ми — маркетингова компанія (Mediabuying Team), що динамічно...",
+            posted: "вчора",
+          },
+        },
+        {
+          label: "Афілейт менеджер (Crypto/Fx) — від $1200/міс",
+          job: {
+            title: "Affiliate manager",
+            salary: "67 000–90 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Дистанційно",
+            description:
+              "Повна зайнятість. Досвід роботи від 1 року. Affiliate Manager Crypto/Fx. Ми — нетворк у крипто-вертикалі, на ринку 2 роки. Побудували стабільну базу партнерів і чіткі процеси — тепер розширюємо команду. Що потрібно робити...",
+            posted: "1 тиж. тому",
+          },
+        },
+        {
+          label: "Middle афілейт менеджер — від $1000/міс",
+          job: {
+            title: "Affiliate manager",
+            salary: "44 000–88 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Дистанційно",
+            description:
+              "Повна зайнятість. Досвід роботи від 1 року. We're looking for an Affiliate Manager who's proactive, driven, and comfortable working in a fast-paced performance marketing environment. If you enjoy building strong partner relationships, optimizi...",
+            posted: "3 тиж. тому",
+          },
+        },
+        {
+          label: "Інфлюенсер-менеджер — від $700/міс",
+          job: {
+            title: "Influencer, affiliate manager",
+            salary: "35 000–45 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Дистанційно",
+            description:
+              "Повна зайнятість. We are a fast-growing e-commerce company specialising primarily in the Health & Personal Care category. With over 10 years of experience in the US and European markets, we have successfully launched and scaled multiple...",
+            posted: "1 тиж. тому",
+          },
+        },
+        {
+          label: "Афілейт аккаунт-менеджер — від $1500/міс",
+          job: {
+            title: "Affiliate Account Manager",
+            salary: "80 000–160 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Дистанційно",
+            description:
+              "Повна зайнятість. Досвід роботи від 2 років. Команда PR+ GROUP у пошуку Affiliate Account Manager в команду нашого партнера — міжнародну компанію, яка спеціалізується на performance marketing та розвитку...",
+            posted: "5 днів тому",
+          },
+        },
+      ],
+    },
   },
   {
     slug: "smm",
@@ -493,6 +673,78 @@ export const courses: Course[] = [
           title: "Дипломна робота",
           description:
             "Перевірка навичок після проходження курсу. Отримання диплома.",
+        },
+      ],
+    },
+    career: {
+      heading: ["Кар'єра", "після курсу"],
+      subtitle: [
+        { text: "Наш " },
+        { text: "кар'єрний менеджер", bold: true },
+        {
+          text: " допоможе скласти резюме, підготуватися до співбесіди та буде підтримувати на етапі працевлаштування.",
+        },
+      ],
+      positionsTitle: "Позиції на яких ти можеш працювати",
+      image: "/courses/smm/career/bg.png",
+      positions: [
+        {
+          label: "SMM-спеціаліст — від $500/міс за 1 проєкт",
+          job: {
+            title: "Senior/Middle SMM, Creative producer",
+            salary: "50 000–100 000 грн",
+            badges: ["hot"],
+            location: "Київ, 1,5 км від центру",
+            description:
+              "Повна зайнятість. Досвід роботи від 2 років. Ми не шукаємо людину, яка «веде соцмережі». Ми шукаємо того, хто відчував бренд і знає, як перетворити це відчуття на контент, який хочеться дивитись, зберігати і пересилати. Про нас...",
+          },
+        },
+        {
+          label: "Контент-крієйтор — від $600/міс",
+          job: {
+            title: "Контент-крієйтор, SMM-менеджер",
+            salary: "40 000–60 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Київ, 10,0 км від центру",
+            description:
+              "Повна зайнятість. Досвід роботи від 1 року. Компанія, що працює у сфері продажу та розвитку агро та садової техніки, запрошує до команди контент-крієтора / SMM-менеджера. Ми шукаємо не просто людину, яка веде...",
+            posted: "9 год. тому",
+          },
+        },
+        {
+          label: "Reels-мейкер — від $400/міс",
+          job: {
+            title:
+              "Reels-мейкер, контент-креатор в фітнес-студію (Instagram, TikTok)",
+            salary: "20 000–40 000 грн",
+            location: "Київ, 8,8 км від центру",
+            description:
+              "Повна зайнятість, неповна зайнятість. Досвід роботи від 2 років. Вимоги: ми шукаємо людину, яка має досвід створення контенту для Instagram та TikTok, розуміє принципи роботи Reels, вміє працювати зі сценаріями...",
+            posted: "1 тиж. тому",
+          },
+        },
+        {
+          label: "Content creator — від $500/міс",
+          job: {
+            title: "Контент-мейкер, Content creator, SMM-менеджер",
+            salary: "30 000–50 000 грн",
+            location: "Київ, 4,1 км від центру",
+            description:
+              "Повна зайнятість. Досвід роботи від 1 року. LFL3D — це команда, яка живе світом 3D-друку й допомагає людям розуміти техніку, матеріали та всі нюанси цієї сфери. Ми не просто продаємо — ми пояснюємо, показуємо, навчаємо...",
+            posted: "4 дні тому",
+          },
+        },
+        {
+          label: "Контент-креатор, SMM — від $600/міс",
+          job: {
+            title: "Контент-креатор, SMM-менеджер",
+            salary: "35 000–60 000 грн",
+            salaryNote: "Вища за середню",
+            location: "Київ, 3,8 км від центру",
+            description:
+              "Повна зайнятість. Досвід роботи від 1 року. Вища освіта. Yuma Medical — виробник виробів медичного призначення (ін'єкційна косметологія). Наші бренди: TwAc, APPeex. У зв'язку з розширенням штату, в нашу дружню сім'ю...",
+            posted: "3 дні тому",
+          },
         },
       ],
     },
