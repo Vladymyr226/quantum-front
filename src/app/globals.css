@@ -52,18 +52,21 @@
 @keyframes trail-pop {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(0.35);
+    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg))
+      scale(0.35);
   }
   18% {
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(1.12);
+    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg))
+      scale(1.12);
   }
   32% {
     transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg)) scale(0.86);
+    transform: translate(-50%, -50%) rotate(var(--trail-rotate, 0deg))
+      scale(0.86);
   }
 }
 
@@ -91,4 +94,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+.nf-bg {
+  background-color: #adadad;
+  background-image: url("/notfound/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 20%;
 }
