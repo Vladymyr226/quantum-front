@@ -60,6 +60,8 @@ export type CourseProgramData = {
   heading: string;
   label: string;
   items: CourseProgramItem[];
+  bonusTitle?: string;
+  bonuses?: string[];
 };
 
 export type CareerBadge = "hot" | "booking";
@@ -681,6 +683,8 @@ export const courses: Course[] = [
             "Перевірка навичок після проходження курсу. Отримання диплома.",
         },
       ],
+      bonusTitle: "Бонуси:",
+      bonuses: ["Таргетинг", "Директ менеджер"],
     },
     career: {
       heading: ["Кар'єра", "після курсу"],

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { CourseProgramData, CourseProgramItem } from "@/content/courses";
 
 function ProgramRow({
@@ -23,7 +25,13 @@ function ProgramRow({
   );
 }
 
-export function CourseProgram({ heading, label, items }: CourseProgramData) {
+export function CourseProgram({
+  heading,
+  label,
+  items,
+  bonusTitle,
+  bonuses,
+}: CourseProgramData) {
   return (
     <section className="-mt-px bg-[#f2f2f2] text-ink">
       <div className="mx-auto max-w-[1600px] px-5 py-20 lg:px-10 lg:py-[110px]">
@@ -37,6 +45,37 @@ export function CourseProgram({ heading, label, items }: CourseProgramData) {
             <ProgramRow key={i} index={i} item={item} />
           ))}
         </div>
+
+        {bonuses && bonuses.length > 0 && (
+          <div className="mt-14 lg:mt-20">
+            {bonusTitle && (
+              <p className="text-center text-[16px] font-normal text-[#262626] lg:text-[20px]">
+                {bonusTitle}
+              </p>
+            )}
+            <div className="mt-5 flex flex-col items-center justify-center gap-x-14 gap-y-5 lg:mt-6 lg:flex-row">
+              {bonuses.map((bonus, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-[0.42em] text-[24px] lg:text-[clamp(34px,3.4vw,48px)]"
+                >
+                  <span className="relative aspect-square h-[0.85em] shrink-0 rounded-[0.16em] bg-[#262626]">
+                    <Image
+                      src="/icons/gift.svg"
+                      alt=""
+                      fill
+                      unoptimized
+                      className="object-contain p-[20%] lg:p-[28%]"
+                    />
+                  </span>
+                  <span className="font-heading leading-[0.95] font-bold tracking-[-0.02em] text-ink uppercase">
+                    {bonus}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
