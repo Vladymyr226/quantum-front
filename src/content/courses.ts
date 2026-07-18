@@ -62,34 +62,27 @@ export type CourseProgramData = {
   items: CourseProgramItem[];
 };
 
-/** Top pills on a job card. */
 export type CareerBadge = "hot" | "booking";
 
 export type CareerJob = {
   title: string;
   salary: string;
-  /** Optional pill next to the salary, e.g. "Вища за середню". */
   salaryNote?: string;
   badges?: CareerBadge[];
   location: string;
   description: string;
-  /** e.g. "5 днів тому" (may be absent). */
   posted?: string;
 };
 
 export type CareerPosition = {
-  /** Clickable label on the right, e.g. "Медіабаєр — від $1200/міс". */
   label: string;
   job: CareerJob;
 };
 
 export type CourseCareerData = {
-  /** Big heading, one entry per line. */
   heading: string[];
-  /** Subtitle as text runs; `bold` marks the emphasised span. */
   subtitle: { text: string; bold?: boolean }[];
   positionsTitle: string;
-  /** Background photo (dark). */
   image: string;
   positions: CareerPosition[];
 };
