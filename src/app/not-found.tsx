@@ -36,7 +36,7 @@ export default function NotFound() {
           />
         </header>
 
-        <div className="flex flex-1 flex-col items-center justify-center px-5 pb-[9vh] text-center">
+        <div className="mt-[12vh] flex flex-1 flex-col items-center justify-center px-5 pb-[9vh] text-center lg:mt-0">
           <p className="font-heading text-[44vw] leading-[0.8] font-bold tracking-[-0.02em] text-white/75 mix-blend-difference select-none lg:text-[clamp(320px,33vw,560px)]">
             404
           </p>

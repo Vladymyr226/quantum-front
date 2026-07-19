@@ -103,3 +103,10 @@ body {
   background-size: cover;
   background-position: 50% 20%;
 }
+
+@media (max-width: 1023px) {
+  .nf-bg {
+    background-image: url("/notfound/bg-mobile.png");
+    background-position: 50% 15%;
+  }
+}
