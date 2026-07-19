@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 
 import type {
@@ -17,29 +17,105 @@ const iconBase = {
   strokeLinejoin: "round" as const,
 };
 
-function MoneyIcon({ className }: { className?: string }) {
+function HryvniaIcon({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`inline-flex shrink-0 items-center justify-center leading-none font-semibold ${className}`}
+    >
+      ₴
+    </span>
+  );
+}
+
+function CityIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} {...iconBase} aria-hidden>
-      <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
-      <circle cx="12" cy="12" r="2.6" />
+      <path d="M3 21h18" />
+      <path d="M5 21V6a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v15" />
+      <path d="M12 21V10a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v11" />
+      <path d="M8 9h0M8 12.5h0M8 16h0M15 12.5h0M15 16h0" />
     </svg>
   );
 }
 
-function CompanyIcon({ className }: { className?: string }) {
+function HeartIcon({
+  className,
+  filled = false,
+}: {
+  className?: string;
+  filled?: boolean;
+}) {
   return (
-    <svg viewBox="0 0 24 24" className={className} {...iconBase} aria-hidden>
-      <rect x="3" y="7.5" width="18" height="12" rx="2" />
-      <path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5" />
-    </svg>
-  );
-}
-
-function HeartIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} {...iconBase} aria-hidden>
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      {...iconBase}
+      fill={filled ? "currentColor" : "none"}
+      aria-hidden
+    >
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z" />
     </svg>
+  );
+}
+
+const SAVED_JOBS_KEY = "quantum:saved-jobs";
+
+function readSavedJobs(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(SAVED_JOBS_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+const savedJobsListeners = new Set<() => void>();
+
+function subscribeSavedJobs(cb: () => void) {
+  savedJobsListeners.add(cb);
+  window.addEventListener("storage", cb);
+  return () => {
+    savedJobsListeners.delete(cb);
+    window.removeEventListener("storage", cb);
+  };
+}
+
+function toggleSavedJob(jobKey: string) {
+  const list = readSavedJobs();
+  const next = list.includes(jobKey)
+    ? list.filter((k) => k !== jobKey)
+    : [...list, jobKey];
+  try {
+    window.localStorage.setItem(SAVED_JOBS_KEY, JSON.stringify(next));
+  } catch {
+    /* storage unavailable (private mode / quota) — no-op */
+  }
+  savedJobsListeners.forEach((l) => l());
+}
+
+/** Toggle-saves the job to localStorage; persists across sessions. */
+function SaveButton({ jobKey }: { jobKey: string }) {
+  const saved = useSyncExternalStore(
+    subscribeSavedJobs,
+    () => readSavedJobs().includes(jobKey),
+    () => false,
+  );
+
+  return (
+    <button
+      type="button"
+      onClick={() => toggleSavedJob(jobKey)}
+      aria-pressed={saved}
+      className={`inline-flex items-center gap-1.5 transition-colors ${
+        saved ? "text-ink" : "text-ink/55 hover:text-ink"
+      }`}
+    >
+      <HeartIcon className="size-[18px]" filled={saved} />
+      {saved ? "Збережено" : "Зберегти"}
+    </button>
   );
 }
 
@@ -56,11 +132,11 @@ function FlameIcon({ className }: { className?: string }) {
   );
 }
 
-function ShieldIcon({ className }: { className?: string }) {
+function LockIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} {...iconBase} aria-hidden>
-      <path d="M12 3 5 5.5v5c0 4.4 3 7.4 7 8.7 4-1.3 7-4.3 7-8.7v-5L12 3Z" />
-      <path d="m9.2 11.8 1.9 1.9 3.7-3.9" />
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.2" />
+      <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
     </svg>
   );
 }
@@ -68,15 +144,15 @@ function ShieldIcon({ className }: { className?: string }) {
 function TopBadge({ kind }: { kind: CareerBadge }) {
   if (kind === "hot") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-[#ffe6dc] px-2.5 py-1 text-[12px] font-medium text-[#df5a2c]">
-        <FlameIcon className="size-3.5" />
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ffe6dc] px-3 py-1.5 text-[13px] font-medium text-[#df5a2c]">
+        <FlameIcon className="size-4" />
         Гаряча
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-[#dff2e6] px-2.5 py-1 text-[12px] font-medium text-[#2f9e63]">
-      <ShieldIcon className="size-3.5" />
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#dff2e6] px-3 py-1.5 text-[13px] font-medium text-[#2f9e63]">
+      <LockIcon className="size-4" />
       Бронювання
     </span>
   );
@@ -84,49 +160,43 @@ function TopBadge({ kind }: { kind: CareerBadge }) {
 
 function JobCard({ job }: { job: CareerJob }) {
   return (
-    <div className="flex h-full flex-col rounded-[18px] bg-white p-6 text-ink shadow-[0_30px_60px_-24px_rgba(0,0,0,0.5)] lg:p-7">
+    <div className="flex h-full flex-col rounded-[18px] bg-white p-7 text-ink shadow-[0_30px_60px_-24px_rgba(0,0,0,0.5)] lg:p-8">
       {job.badges && job.badges.length > 0 && (
-        <div className="mb-3 flex flex-wrap gap-2">
+        <div className="mb-4 flex flex-wrap gap-2">
           {job.badges.map((b) => (
             <TopBadge key={b} kind={b} />
           ))}
         </div>
       )}
 
-      <h4 className="text-[19px] leading-[1.25] font-bold text-ink lg:text-[20px]">
+      <h4 className="text-[22px] leading-[1.25] font-bold text-ink lg:text-[25px]">
         {job.title}
       </h4>
 
-      <div className="mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[14px]">
+      <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[16px]">
         <span className="inline-flex items-center gap-2 font-medium text-ink">
-          <MoneyIcon className="size-4 text-ink/45" />
+          <HryvniaIcon className="size-[20px] text-[17px] text-ink/45" />
           {job.salary}
         </span>
         {job.salaryNote && (
-          <span className="rounded-full bg-[#ece4fb] px-2.5 py-0.5 text-[12px] font-medium text-[#7a58d6]">
+          <span className="rounded-full bg-[#ece4fb] px-3 py-1 text-[13px] font-medium text-[#7a58d6]">
             {job.salaryNote}
           </span>
         )}
       </div>
 
-      <div className="mt-2.5 flex items-center gap-2 text-[14px] text-ink/70">
-        <CompanyIcon className="size-4 text-ink/45" />
+      <div className="mt-3 flex items-center gap-2 text-[16px] text-ink/70">
+        <CityIcon className="size-[20px] text-ink/45" />
         {job.location}
       </div>
 
-      <p className="mt-4 line-clamp-3 text-[14px] leading-[1.5] text-ink/55">
+      <p className="mt-5 line-clamp-3 text-[15px] leading-[1.6] text-ink/55 lg:line-clamp-4 lg:text-[16px]">
         {job.description}
       </p>
 
-      <div className="mt-auto flex items-center justify-between pt-6 text-[13px] text-ink/45">
+      <div className="mt-auto flex items-center justify-between pt-6 text-[14px] text-ink/45">
         <span>{job.posted ?? " "}</span>
-        <button
-          type="button"
-          className="inline-flex items-center gap-1.5 text-ink/55 transition-colors hover:text-ink"
-        >
-          <HeartIcon className="size-4" />
-          Зберегти
-        </button>
+        <SaveButton jobKey={job.title} />
       </div>
     </div>
   );
@@ -152,9 +222,6 @@ export function CourseCareer({
           sizes="100vw"
           className="object-cover object-center grayscale"
         />
-        <div className="absolute inset-0 hidden bg-gradient-to-b from-black/60 via-black/20 to-black/50 lg:block" />
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0a0a0a] to-transparent lg:hidden" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent lg:hidden" />
       </div>
 
       <div className="relative z-10 mx-auto flex max-w-[1600px] flex-col px-5 py-14 lg:min-h-[900px] lg:px-10 lg:py-24">
@@ -199,7 +266,7 @@ export function CourseCareer({
           </div>
 
           <div className="w-full rounded-[18px] bg-black/35 p-6 backdrop-blur-md lg:max-w-[430px] lg:p-8">
-            <p className="text-[13px] text-white/60">{positionsTitle}</p>
+            <p className="text-[13px] text-white">{positionsTitle}</p>
             <ul className="mt-4 space-y-3.5 lg:mt-6 lg:space-y-4">
               {positions.map((position, i) => {
                 const isActive = i === active;

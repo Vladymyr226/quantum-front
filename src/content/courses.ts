@@ -122,7 +122,7 @@ export const courses: Course[] = [
       image: "/courses/mediabuyer/hero.png",
       imageAlt: "Студент курсу «Медіабаєр»",
       ctaLabel: "Дізнайся про формати та ціни",
-      ctaHref: "#formats",
+      ctaHref: "#apply",
       background: BG_DARK,
     },
     tasks: {
@@ -356,7 +356,7 @@ export const courses: Course[] = [
       image: "/courses/affiliate/hero.png",
       imageAlt: "Студенти курсу «Афілейт спеціаліст»",
       ctaLabel: "Дізнайся про формати та ціни",
-      ctaHref: "#formats",
+      ctaHref: "#apply",
       background: BG_BLUE,
     },
     tasks: {
@@ -580,7 +580,7 @@ export const courses: Course[] = [
       image: "/courses/smm/hero.png",
       imageAlt: "Студентки курсу «SMM спеціаліст»",
       ctaLabel: "Дізнайся про формати та ціни",
-      ctaHref: "#formats",
+      ctaHref: "#apply",
       background: BG_DARK,
     },
     audience: {

@@ -61,7 +61,7 @@ export function CourseApply({ slug, subtitle }: CourseApplyProps) {
     "w-full border-b border-ink/15 bg-transparent py-5 text-center text-[16px] text-ink transition-colors placeholder:text-ink focus:border-ink/45 focus:outline-none lg:text-[18px]";
 
   return (
-    <section className="-mt-px bg-white text-ink">
+    <section id="apply" className="-mt-px scroll-mt-6 bg-white text-ink">
       <div className="mx-auto max-w-[820px] px-5 py-20 lg:py-28">
         <h2 className="text-center font-heading text-[38px] leading-[1.0] font-bold tracking-[-0.01em] uppercase lg:text-[clamp(40px,5.6vw,58px)]">
           Залишити заявку
