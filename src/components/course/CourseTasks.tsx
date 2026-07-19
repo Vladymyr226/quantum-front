@@ -47,13 +47,13 @@ function StackedCard({ task, index }: { task: CourseTask; index: number }) {
     <div className="rounded-[16px] bg-white p-5 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.12)]">
       <CardHeader number={task.number} index={index} />
       <h3 className={`mt-4 text-[22px] ${CARD_TITLE}`}>{task.title}</h3>
-      <div className="relative mt-5 aspect-[4/3] overflow-hidden rounded-[12px] bg-black/[0.03]">
+      <div className="relative mt-5 aspect-[4/3] overflow-hidden rounded-[12px]">
         <Image
           src={task.image}
           alt={task.imageAlt}
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-contain"
         />
       </div>
     </div>
@@ -86,13 +86,13 @@ function ScatterCard({
       >
         {task.title}
       </h3>
-      <div className="relative mt-3.5 min-h-0 flex-1 overflow-hidden rounded-[12px] bg-black/[0.03]">
+      <div className="relative mt-3.5 min-h-0 flex-1 overflow-hidden rounded-[12px]">
         <Image
           src={task.image}
           alt={task.imageAlt}
           fill
           sizes="25vw"
-          className="object-cover"
+          className="object-contain"
         />
       </div>
     </div>
