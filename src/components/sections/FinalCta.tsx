@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 import { ImageTrail } from "@/components/ui/ImageTrail";
 
@@ -29,57 +30,21 @@ function ArrowRight({ className }: { className?: string }) {
   );
 }
 
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-      className={className}
-    >
-      <path d="M5 12.5 10 17.5 19 7" />
-    </svg>
-  );
-}
-
-function CloseIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-      className={className}
-    >
-      <path d="M6 6 18 18M18 6 6 18" />
-    </svg>
-  );
-}
-
 /**
  * Final CTA — «ОНЛАЙН-РЕКЛАМА ПОТРІБНА ЗАВЖДИ!» + lead form.
  * Light section; course photos trail the cursor behind the heading.
- * Submit is a stub: swaps the button to «НАДІСЛАНО ✓» and shows a thank-you toast.
+ * Submit is a stub: navigates to the /thanks page.
  * Figma: MOB 30:625 (PC mirrors under 30:2).
  */
 export function FinalCta() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [telegram, setTelegram] = useState("");
   const [phone, setPhone] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [showThanks, setShowThanks] = useState(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
-    setShowThanks(true);
+    router.push("/thanks");
   }
 
   const inputCls =
@@ -135,14 +100,10 @@ export function FinalCta() {
             className="group relative mt-8 flex h-[70px] w-full lg:w-[280px] items-center overflow-hidden rounded-[16px] bg-ink pr-[64px] pl-7 text-white"
           >
             <span className="text-[22px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
-              {submitted ? "НАДІСЛАНО" : "НАДІСЛАТИ"}
+              НАДІСЛАТИ
             </span>
             <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-white text-ink transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95">
-              {submitted ? (
-                <CheckIcon className="size-[18px]" />
-              ) : (
-                <ArrowRight className="size-[18px]" />
-              )}
+              <ArrowRight className="size-[18px]" />
             </i>
           </button>
 
@@ -159,30 +120,6 @@ export function FinalCta() {
           </p>
         </form>
       </div>
-
-      {/* Thank-you toast (stub submit) — bottom-right on desktop, bottom on mobile */}
-      {showThanks && (
-        <div
-          role="status"
-          aria-live="polite"
-          className="fixed right-5 bottom-5 left-5 z-50 animate-toast-in sm:left-auto sm:w-[590px]"
-        >
-          <div className="relative rounded-[16px] bg-white p-10 text-[#262626] shadow-2xl lg:p-16">
-            <button
-              type="button"
-              onClick={() => setShowThanks(false)}
-              aria-label="Закрити"
-              className="absolute top-4 right-4 grid size-8 place-items-center transition-opacity hover:opacity-60"
-            >
-              <CloseIcon className="size-6" />
-            </button>
-            <p className="pr-8 text-[32px] leading-tight">Дякуємо!</p>
-            <p className="mt-2 text-[22px] text-[#262626]/70">
-              Менеджер зв&apos;яжеться з тобою найближчим часом.
-            </p>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
