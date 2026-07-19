@@ -76,7 +76,7 @@ export function Lesson() {
         raised toward the heading. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-[50%] right-[1%] hidden aspect-840/751 h-[76%] -translate-y-1/2 bg-[url('/marketing/Vector.svg')] bg-contain bg-no-repeat opacity-[20%] lg:block"
+        className="pointer-events-none absolute top-[62%] right-[1%] hidden aspect-840/751 h-[76%] -translate-y-1/2 bg-[url('/marketing/Vector.svg')] bg-contain bg-no-repeat opacity-[20%] lg:block"
       />
 
       <div className="relative mx-auto max-w-[1920px] space-y-10 px-5 py-20 lg:grid lg:grid-cols-[615px_1fr] lg:grid-rows-[auto_1fr] lg:space-y-0 lg:gap-x-[75px] lg:gap-y-12 lg:px-[70px] lg:py-[150px]">
