@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import type { CourseHeroData } from "@/content/courses";
 import { ArrowButton } from "@/components/ui/ArrowButton";
+import { CourseHeroGallery } from "@/components/course/CourseHeroGallery";
 
 const DEFAULT_BACKGROUND =
   "radial-gradient(115% 95% at 80% -12%, #2f2f2f 0%, #262626 46%, #202020 100%)";
@@ -12,12 +13,14 @@ export function CourseHero({
   subtitle,
   tags,
   image,
+  images,
   imageAlt,
   ctaLabel,
   ctaHref,
   background,
   vectorColor = "#F2F2F2",
 }: CourseHeroData) {
+  const frames = images && images.length > 0 ? images : [image];
   const cta = (
     <ArrowButton href={ctaHref} variant="light">
       {ctaLabel}
@@ -115,16 +118,7 @@ export function CourseHero({
         </div>
 
         <div className="mt-8 shrink-0 lg:mt-0 lg:w-[41%] lg:max-w-[620px]">
-          <div className="relative aspect-square w-full overflow-hidden rounded-[16px] bg-white/5 lg:aspect-auto lg:h-full">
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 41vw"
-              className="object-cover"
-              priority
-            />
-          </div>
+          <CourseHeroGallery images={frames} alt={imageAlt} />
         </div>
 
         <div className="mt-2 pt-8 lg:mt-auto lg:hidden">{cta}</div>

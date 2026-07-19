@@ -10,6 +10,7 @@ import { CourseCareer } from "@/components/course/CourseCareer";
 import { CourseAgreement } from "@/components/course/CourseAgreement";
 import { CourseApply } from "@/components/course/CourseApply";
 import { courses, getCourse } from "@/content/courses";
+import { getHeroImages } from "@/content/heroImages";
 import { Footer } from "@/components/sections/Footer";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -33,9 +34,14 @@ export default async function CoursePage({ params }: Params) {
   const course = getCourse(slug);
   if (!course) notFound();
 
+  const heroImages = getHeroImages(course.slug);
+
   return (
     <main className="w-full min-w-0 flex-1">
-      <CourseHero {...course.hero} />
+      <CourseHero
+        {...course.hero}
+        images={heroImages.length ? heroImages : course.hero.images}
+      />
       {course.tasks && <CourseTasks {...course.tasks} />}
       {course.payout && <CoursePayout {...course.payout} />}
       {course.audience && <CourseAudience {...course.audience} />}

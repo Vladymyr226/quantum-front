@@ -16,12 +16,57 @@ export function Hero() {
     // scrolling): the hero section grows, the ticker sits at the bottom.
     <div className="flex min-h-[100svh] flex-col">
       <section className="relative flex w-full flex-1 flex-col overflow-hidden">
-        {/* Portrait background — art-directed framing per breakpoint.
-          Height-based sizing keeps it full-height; fallback color blends any
-          side gap on ultra-wide screens. */}
+        {/* Layer 0 — flat fill for the sides the backdrop photo can't reach. */}
+        <div aria-hidden className="absolute inset-0 -z-[40] bg-[#a1a2a1]" />
+
+        {/* Layer 1 — backdrop photo (grey + the man). Same pixel canvas as the
+          front portrait below, sized/positioned identically so the two men line
+          up pixel-for-pixel. The Q vector then sits between them. */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[#a1a2a1] bg-[url('/hero/portrait.png')] bg-[length:auto_200%] bg-[position:50%_82%] bg-no-repeat lg:bg-[length:auto_265%] lg:bg-[position:50%_75%]"
+          className="absolute inset-0 -z-[30] bg-[url('/hero/backdrop-mobile.png')] bg-[length:auto_100%] bg-[position:50%_50%] bg-no-repeat lg:bg-[url('/hero/backdrop.png')]"
+        />
+
+        {/* Layer 2 — brand Q vector (#F2F2F2), placed *behind* the front portrait
+          so it only shows through the grey negative space around the figure.
+          Desktop keeps the course-hero placement (top-right); mobile uses the
+          dedicated cropped Q pressed to the right, behind the man's back. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 right-0 -z-[20] hidden h-full w-full max-w-[1200px] opacity-50 lg:block"
+          style={{
+            backgroundColor: "#f2f2f2",
+            maskImage: "url(/vectorDesktopHero.svg)",
+            WebkitMaskImage: "url(/vectorDesktopHero.svg)",
+            maskSize: "contain",
+            WebkitMaskSize: "contain",
+            maskPosition: "right top",
+            WebkitMaskPosition: "right top",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 -z-[20] w-full opacity-[0.18] lg:hidden"
+          style={{
+            backgroundColor: "#f2f2f2",
+            maskImage: "url(/vectorHeroMobile-v3.svg)",
+            WebkitMaskImage: "url(/vectorHeroMobile-v3.svg)",
+            maskSize: "auto 54%",
+            WebkitMaskSize: "auto 54%",
+            maskPosition: "right 63%",
+            WebkitMaskPosition: "right 63%",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+          }}
+        />
+
+        {/* Layer 3 — front portrait (transparent PNG). Same canvas/sizing as the
+          backdrop, so it re-covers the man and pushes the Q behind him. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[url('/hero/portrait-mobile.png')] bg-[length:auto_100%] bg-[position:50%_50%] bg-no-repeat lg:bg-[url('/hero/portrait-v2.png')]"
         />
 
         {/* Content column */}
@@ -73,11 +118,11 @@ export function Hero() {
               >
                 <text
                   x="0"
-                  y="170"
+                  y="180"
                   textLength="1097"
                   lengthAdjust="spacingAndGlyphs"
                   fontSize="200"
-                  className="fill-white font-display font-extrabold"
+                  className="fill-white font-display font-bold tracking-[-0.1em]"
                 >
                   QUANTUM
                 </text>

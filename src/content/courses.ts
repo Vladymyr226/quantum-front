@@ -3,6 +3,7 @@ export type CourseHeroData = {
   subtitle: string;
   tags: string[];
   image: string;
+  images?: string[];
   imageAlt: string;
   ctaLabel: string;
   ctaHref: string;
