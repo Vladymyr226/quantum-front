@@ -39,7 +39,7 @@ export function ArrowButton({
   return (
     <a
       href={href}
-      className={`group relative inline-flex min-h-[72px] w-full items-center overflow-hidden rounded-[14px] py-2.5 pr-[64px] pl-6 text-[16px] font-medium tracking-[0.02em] sm:w-auto sm:pr-[68px] sm:pl-7 ${v.base} ${className}`}
+      className={`group relative inline-flex min-h-[72px] w-full items-center overflow-hidden rounded-[14px] py-2.5 pr-[112px] pl-6 text-[16px] leading-[1.1] font-normal tracking-normal sm:w-auto sm:pr-[118px] sm:pl-7 ${v.base} ${className}`}
     >
       <span className="text-balance uppercase transition-opacity duration-500 group-hover:opacity-0">
         {children}

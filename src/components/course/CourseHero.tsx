@@ -88,7 +88,7 @@ export function CourseHero({
             ))}
           </ul>
 
-          <h1 className="mt-5 font-heading text-[clamp(2.75rem,6.2vw,7rem)] leading-[0.9] font-black tracking-[-0.01em] uppercase lg:mt-7">
+          <h1 className="mt-5 font-heading text-[clamp(2.75rem,6.2vw,7rem)] leading-[1.1] font-bold tracking-[-0.1em] uppercase lg:mt-7">
             {title.split(" ").map((word, i) => (
               <span key={i} className="block">
                 {word}
@@ -96,8 +96,18 @@ export function CourseHero({
             ))}
           </h1>
 
-          <p className="mt-3 max-w-[520px] text-[19px] leading-[1.2] text-white/80 lg:mt-6 lg:max-w-[500px] lg:text-[23px]">
-            {subtitle}
+          <p className="mt-3 max-w-[520px] text-[19px] leading-[1.1] text-white/80 lg:mt-6 lg:max-w-[500px] lg:text-[23px]">
+            {subtitle.split("\n").map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && (
+                  <>
+                    {" "}
+                    <br className="lg:hidden" />
+                  </>
+                )}
+              </span>
+            ))}
           </p>
           <div className="absolute bottom-18 left-18 hidden lg:inline">
             {cta}
