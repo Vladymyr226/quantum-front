@@ -152,7 +152,7 @@ export function Courses() {
                 className="border-t border-[#dddddc] pt-7 pb-8 lg:pt-[50px] lg:pb-[34px]"
               >
                 <Link href={`/courses/${c.slug}`} className="group block">
-                  <h3 className="font-heading text-[46px] leading-[1.1] font-bold tracking-[-0.05em] uppercase transition-opacity group-hover:opacity-60 lg:text-[70px]">
+                  <h3 className="font-heading text-[clamp(28px,12vw,46px)] leading-[1.1] font-bold tracking-[-0.05em] uppercase transition-opacity group-hover:opacity-60 lg:text-[70px]">
                     {c.title}
                   </h3>
 

@@ -56,13 +56,13 @@ export function FinalCta() {
         {/* Trail zone — the cursor only spawns photos over the heading + subtitle */}
         <ImageTrail
           images={COURSE_PHOTOS}
-          className="relative flex min-h-[58svh] flex-col items-center justify-center lg:min-h-[62svh]"
+          className="relative flex min-h-[42svh] flex-col items-center justify-center lg:min-h-[48svh]"
         >
-          <h2 className="text-center font-heading text-[67px] leading-[0.95] font-extrabold tracking-[-0.03em] text-balance uppercase lg:text-[110px]">
+          <h2 className="text-center font-heading text-[clamp(40px,15vw,67px)] leading-[1.0] font-bold tracking-[-0.1em] text-balance uppercase lg:text-[110px]">
             Онлайн-реклама потрібна завжди!
           </h2>
 
-          <p className="mt-16 text-center text-[18px] text-ink/70 lg:text-[22px]">
+          <p className="mt-8 text-center text-[18px] leading-[1.1] text-ink/70 lg:mt-10 lg:text-[22px]">
             Залиш контакт — підберемо курс для тебе
           </p>
         </ImageTrail>
@@ -108,7 +108,8 @@ export function FinalCta() {
           </button>
 
           <p className="mt-2 text-center text-[14px] text-ink/50 lg:text-[16px]">
-            Залишаючи заявку ви погоджуєтесь з умовами{" "}
+            Залишаючи заявку ви погоджуєтесь з умовами
+            <br />
             <a href="#" className="underline underline-offset-2 hover:text-ink">
               договору-оферти
             </a>{" "}

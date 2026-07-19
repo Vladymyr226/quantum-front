@@ -128,11 +128,11 @@ export function Footer() {
         <div className="lg:hidden">
           <Logo />
           <div className="mt-14 flex gap-6 min-[420px]:gap-[50px]">
-            <div className="flex shrink-0 flex-col gap-12">
+            <div className="flex min-w-0 flex-col gap-12">
               <LinkNav title="/ курси" links={COURSE_LINKS} />
               <LinkNav title="/ відповідальність" links={LEGAL_LINKS} />
             </div>
-            <div className="flex shrink-0 flex-col">
+            <div className="flex min-w-0 shrink-0 flex-col">
               <Contacts />
               <div className="mt-auto pt-12">
                 <Copyright />

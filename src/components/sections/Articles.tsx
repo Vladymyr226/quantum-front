@@ -49,7 +49,7 @@ export function Articles() {
                 />
               </div>
 
-              <h3 className="mt-10 font-heading text-[49px] leading-[1.05] font-bold tracking-[-0.03em] uppercase transition-opacity duration-300 group-hover:opacity-70 lg:text-[50px]">
+              <h3 className="mt-10 font-heading text-[clamp(30px,10.5vw,49px)] leading-[1.05] font-bold tracking-[-0.03em] uppercase transition-opacity duration-300 group-hover:opacity-70 lg:text-[50px]">
                 {a.title}
               </h3>
               <p className="mt-6 text-[18px] text-ink/60 lg:text-[22px]">

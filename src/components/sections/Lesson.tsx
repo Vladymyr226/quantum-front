@@ -82,7 +82,7 @@ export function Lesson() {
       <div className="relative mx-auto max-w-[1920px] space-y-10 px-5 py-20 lg:grid lg:grid-cols-[615px_1fr] lg:grid-rows-[auto_1fr] lg:space-y-0 lg:gap-x-[75px] lg:gap-y-12 lg:px-[70px] lg:py-[150px]">
         {/* Text — top-right on desktop, first on mobile */}
         <div className="min-w-0 lg:col-start-2 lg:row-start-1">
-          <h2 className="font-heading text-[50px] leading-[1.1] font-bold tracking-[-0.03em] uppercase lg:text-[60px]">
+          <h2 className="font-heading text-[clamp(30px,10.5vw,50px)] leading-[1.1] font-bold tracking-[-0.03em] uppercase lg:text-[60px]">
             Що таке афілейт маркетинг?
           </h2>
 
