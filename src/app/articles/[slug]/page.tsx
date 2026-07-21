@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -22,21 +23,26 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 function Logo() {
   return (
-    <span
-      role="img"
-      aria-label="QUANTUM"
-      className="block h-[34px] w-[173px] shrink-0 bg-ink min-[440px]:h-[42px] min-[440px]:w-[213px] lg:h-[30px] lg:w-[152px]"
-      style={{
-        maskImage: "url(/hero/logo.svg)",
-        WebkitMaskImage: "url(/hero/logo.svg)",
-        maskSize: "contain",
-        WebkitMaskSize: "contain",
-        maskRepeat: "no-repeat",
-        WebkitMaskRepeat: "no-repeat",
-        maskPosition: "left center",
-        WebkitMaskPosition: "left center",
-      }}
-    />
+    <Link
+      href="/"
+      aria-label="QUANTUM — на головну"
+      className="inline-block shrink-0 transition-opacity hover:opacity-80"
+    >
+      <span
+        aria-hidden
+        className="block h-[34px] w-[173px] shrink-0 bg-ink min-[440px]:h-[42px] min-[440px]:w-[213px] lg:h-[30px] lg:w-[152px]"
+        style={{
+          maskImage: "url(/hero/logo.svg)",
+          WebkitMaskImage: "url(/hero/logo.svg)",
+          maskSize: "contain",
+          WebkitMaskSize: "contain",
+          maskRepeat: "no-repeat",
+          WebkitMaskRepeat: "no-repeat",
+          maskPosition: "left center",
+          WebkitMaskPosition: "left center",
+        }}
+      />
+    </Link>
   );
 }
 

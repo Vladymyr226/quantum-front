@@ -24,14 +24,14 @@ export function CourseHeroGallery({
   }, [images.length]);
 
   return (
-    <div className="relative aspect-square w-full overflow-hidden rounded-[16px] bg-white/5 lg:aspect-auto lg:h-full">
+    <div className="relative aspect-square w-full overflow-hidden rounded-[16px] bg-white/5 lg:rounded-[calc(16*var(--u))]">
       {images.map((src, i) => (
         <Image
           key={src}
           src={src}
           alt={i === 0 ? alt : ""}
           fill
-          sizes="(max-width: 1024px) 100vw, 41vw"
+          sizes="(max-width: 1024px) 100vw, 38vw"
           priority={i === 0}
           className={`object-cover transition-opacity duration-100 ${
             i === frame ? "opacity-100" : "opacity-0"

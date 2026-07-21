@@ -4,6 +4,8 @@
    Design tokens — QUANTUM (values taken from the Figma file)
 --------------------------------------------------------------------------- */
 :root {
+  --u: 1px;
+
   --background: #0a0a0a; /* page background (dark) */
   --foreground: #f2f2f2; /* primary light text / light surfaces */
   --muted: #a4a5a2; /* muted gray labels */
@@ -77,16 +79,15 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+@media (min-width: 1024px) {
+  :root {
+    --u: calc(100vw / 1920);
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -96,12 +97,40 @@ body {
   overflow-x: hidden;
 }
 
+.footer-bg {
+  background-color: #262626;
+}
+
+@media (min-width: 1024px) {
+  .footer-bg {
+    background-image: radial-gradient(
+      55% 350% at 80% 130%,
+      #373737 0%,
+      #262626 100%
+    );
+  }
+}
+
+.lesson-bg {
+  background-color: #262626;
+}
+
+@media (min-width: 1024px) {
+  .lesson-bg {
+    background-image: radial-gradient(
+      63% 99% at 102% 78%,
+      #3c3c3c 0%,
+      #262626 100%
+    );
+  }
+}
+
 .nf-bg {
   background-color: #adadad;
   background-image: url("/notfound/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 50% 20%;
+  background-position: 50% 0%;
 }
 
 @media (max-width: 1023px) {

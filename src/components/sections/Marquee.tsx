@@ -24,7 +24,7 @@ export function Marquee() {
   return (
     <section
       aria-label={PHRASE}
-      className="flex h-[50px] items-center overflow-hidden bg-ink text-[14px] font-normal text-foreground lg:h-[60px] lg:text-[18px]"
+      className="flex h-[50px] items-center overflow-hidden bg-ink text-[14px] font-normal text-foreground lg:h-[calc(60*var(--u))] lg:text-[calc(18*var(--u))]"
     >
       <div className="flex min-w-max animate-marquee motion-reduce:animate-none">
         <Track />

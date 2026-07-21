@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Course = {
   n: string;
@@ -83,7 +83,7 @@ const COURSES: Course[] = [
   },
 ];
 
-const DEFAULT_INDEX = 2; // desktop photo shown when nothing is hovered
+const DEFAULT_INDEX = 2; // desktop photo shown before the first hover
 
 // Photo-swap interval in ms — this controls the CYCLE SPEED. Lower = faster.
 // (The `duration-*` classes are only the fade length, not the speed.)
@@ -126,41 +126,123 @@ function PhotoStack({
 /**
  * Courses list section (light block after the hero).
  * Desktop: list on the left; the photo on the right cycles through the hovered
- * category's shots. Mobile: each course's photo loops on its own.
+ * title's shots. Mobile: only the course currently filling the screen animates.
  * Figma: PC 30:85, MOB 30:553.
  */
 export function Courses() {
-  const [hover, setHover] = useState<number | null>(null);
+  const [active, setActive] = useState(DEFAULT_INDEX);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [frozen, setFrozen] = useState(0);
   const [frame, setFrame] = useState(0);
 
+  // Desktop: the ticker only runs while a title is under the cursor.
   useEffect(() => {
+    if (hovered === null) return;
     const id = setInterval(() => setFrame((f) => f + 1), CYCLE_MS);
     return () => clearInterval(id);
+  }, [hovered]);
+
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const [onScreen, setOnScreen] = useState<number | null>(null);
+  const [mobileFrames, setMobileFrames] = useState(() => COURSES.map(() => 0));
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    let io: IntersectionObserver | null = null;
+
+    const stop = () => {
+      io?.disconnect();
+      io = null;
+      setOnScreen(null);
+    };
+
+    const start = () => {
+      const ratios = new Map<Element, number>();
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) ratios.set(e.target, e.intersectionRatio);
+          let best: Element | null = null;
+          let bestRatio = 0.35;
+          ratios.forEach((r, el) => {
+            if (r > bestRatio) {
+              bestRatio = r;
+              best = el;
+            }
+          });
+          setOnScreen(
+            best === null
+              ? null
+              : itemRefs.current.indexOf(best as HTMLLIElement),
+          );
+        },
+        { threshold: [0, 0.2, 0.35, 0.5, 0.65, 0.8, 1] },
+      );
+      for (const el of itemRefs.current) if (el) io.observe(el);
+    };
+
+    const sync = () => {
+      stop();
+      if (mq.matches) start();
+    };
+
+    sync();
+    mq.addEventListener("change", sync);
+    return () => {
+      mq.removeEventListener("change", sync);
+      stop();
+    };
   }, []);
 
+  useEffect(() => {
+    if (onScreen === null) return;
+    const id = setInterval(() => {
+      setMobileFrames((prev) =>
+        prev.map((f, i) => (i === onScreen ? f + 1 : f)),
+      );
+    }, CYCLE_MS);
+    return () => clearInterval(id);
+  }, [onScreen]);
+
+  const enterTitle = (i: number) => {
+    setActive(i);
+    setHovered(i);
+  };
+  const leaveTitle = () => {
+    setFrozen(frame);
+    setHovered(null);
+  };
+
   return (
-    <section id="courses" className="scroll-mt-5 bg-surface text-ink lg:scroll-mt-[70px]">
-      <div className="mx-auto max-w-[1920px] px-5 py-20 lg:px-16 lg:py-[130px]">
-        <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-[70px]">
+    <section
+      id="courses"
+      className="scroll-mt-5 bg-surface text-ink lg:scroll-mt-[70px]"
+    >
+      <div className="mx-auto max-w-[1920px] px-5 py-20 lg:px-[calc(70*var(--u))] lg:pt-[calc(148*var(--u))] lg:pb-[calc(98*var(--u))]">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-[calc(70*var(--u))]">
           {/* Course list */}
           <ul className="min-w-0 flex-1">
             {COURSES.map((c, i) => (
               <li
                 key={c.n}
-                onMouseEnter={() => setHover(i)}
-                onMouseLeave={() => setHover(null)}
-                className="border-t border-[#dddddc] pt-7 pb-8 lg:pt-[50px] lg:pb-[34px]"
+                ref={(el) => {
+                  itemRefs.current[i] = el;
+                }}
+                className="border-t border-[#dddddc] pt-7 pb-8 lg:pt-[calc(38*var(--u))] lg:pb-[calc(46*var(--u))]"
               >
                 <Link href={`/courses/${c.slug}`} className="group block">
-                  <h3 className="font-heading text-[clamp(28px,12vw,46px)] leading-[1.1] font-bold tracking-[-0.05em] uppercase transition-opacity group-hover:opacity-60 lg:text-[70px]">
+                  <h3
+                    onMouseEnter={() => enterTitle(i)}
+                    onMouseLeave={leaveTitle}
+                    className="w-fit font-heading text-[clamp(28px,12vw,46px)] leading-[1.1] font-bold tracking-[-0.05em] uppercase transition-opacity group-hover:opacity-60 lg:-ml-[calc(6*var(--u))] lg:text-[calc(70*var(--u))]"
+                  >
                     {c.title}
                   </h3>
 
-                  <div className="mt-2 flex items-start justify-between gap-6 lg:mt-3 lg:items-center">
-                    <p className="max-w-[300px] text-[16px] leading-[1.1] lg:max-w-[460px] lg:text-[22px]">
+                  <div className="mt-2 flex items-start justify-between gap-6 lg:mt-[calc(5*var(--u))] lg:items-end">
+                    <p className="max-w-[300px] text-[16px] leading-[1.1] lg:max-w-[calc(460*var(--u))] lg:text-[calc(22*var(--u))]">
                       {c.desc}
                     </p>
-                    <span className="shrink-0 text-[14px] text-muted lg:text-[22px]">
+                    <span className="shrink-0 text-[14px] text-muted lg:relative lg:top-[calc(7*var(--u))] lg:text-[calc(22*var(--u))]">
                       / {c.n}
                     </span>
                   </div>
@@ -169,7 +251,7 @@ export function Courses() {
                 {/* Mobile photo — loops through the category */}
                 <PhotoStack
                   photos={c.photos}
-                  frame={frame}
+                  frame={mobileFrames[i]}
                   sizes="100vw"
                   className="relative mt-6 aspect-[380/372] overflow-hidden rounded-[8px] bg-muted lg:hidden"
                 />
@@ -178,23 +260,19 @@ export function Courses() {
           </ul>
 
           {/* Desktop photo — hovered category cycles, default is static */}
-          <div className="hidden shrink-0 self-stretch lg:block lg:w-[615px]">
-            <div className="relative h-full min-h-[600px] overflow-hidden rounded-[12px] bg-muted">
-              {COURSES.map((c, i) => {
-                const visible =
-                  hover === null ? i === DEFAULT_INDEX : hover === i;
-                return (
-                  <PhotoStack
-                    key={c.n}
-                    photos={c.photos}
-                    frame={hover === i ? frame : 0}
-                    sizes="615px"
-                    className={`absolute inset-0 transition-opacity duration-100 ${
-                      visible ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                );
-              })}
+          <div className="hidden shrink-0 lg:block lg:w-[calc(615*var(--u))]">
+            <div className="relative h-[calc(601*var(--u))] overflow-hidden rounded-[calc(12*var(--u))] bg-muted">
+              {COURSES.map((c, i) => (
+                <PhotoStack
+                  key={c.n}
+                  photos={c.photos}
+                  frame={hovered === i ? frame : frozen}
+                  sizes="615px"
+                  className={`absolute inset-0 transition-opacity duration-100 ${
+                    i === active ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>

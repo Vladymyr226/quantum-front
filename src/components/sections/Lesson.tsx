@@ -71,42 +71,45 @@ export function Lesson() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#2b2b2b] text-foreground">
+    <section className="lesson-bg relative overflow-hidden text-foreground">
       {/* Background Q mark (downloaded SVG — faint overlay), desktop only,
         raised toward the heading. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-[62%] right-[1%] hidden aspect-840/751 h-[76%] -translate-y-1/2 bg-[url('/marketing/Vector.svg')] bg-contain bg-no-repeat opacity-[20%] lg:block"
+        className="pointer-events-none absolute top-[62%] right-[1%] hidden aspect-840/751 h-[76%] -translate-y-1/2 bg-[url('/marketing/Vector-v2.svg')] bg-contain bg-no-repeat opacity-[2%] lg:block"
       />
 
-      <div className="relative mx-auto max-w-[1920px] space-y-10 px-5 py-20 lg:grid lg:grid-cols-[615px_1fr] lg:grid-rows-[auto_1fr] lg:space-y-0 lg:gap-x-[75px] lg:gap-y-12 lg:px-[70px] lg:py-[150px]">
+      <div className="relative mx-auto max-w-[1920px] space-y-10 px-5 py-20 lg:grid lg:grid-cols-[calc(615*var(--u))_1fr] lg:grid-rows-[auto_1fr] lg:space-y-0 lg:gap-x-[calc(75*var(--u))] lg:gap-y-12 lg:px-[calc(70*var(--u))] lg:py-[calc(150*var(--u))]">
         {/* Text — top-right on desktop, first on mobile */}
         <div className="min-w-0 lg:col-start-2 lg:row-start-1">
-          <h2 className="font-heading text-[clamp(30px,10.5vw,50px)] leading-[1.1] font-bold tracking-[-0.03em] uppercase lg:text-[60px]">
+          <h2 className="font-heading text-[clamp(30px,10.5vw,50px)] leading-[1.1] font-bold tracking-[-0.03em] uppercase lg:-mt-[calc(14*var(--u))] lg:-ml-[calc(5*var(--u))] lg:text-[calc(70*var(--u))] lg:tracking-[-0.05em]">
             Що таке афілейт маркетинг?
           </h2>
 
-          <div className="mt-8 flex items-center gap-3 lg:mt-10">
-            <span className="size-[15px] shrink-0 rounded-[4px] bg-foreground lg:size-[17px]" />
-            <span className="text-[28px] font-bold lg:text-[32px]">
+          <div className="mt-8 flex items-center gap-3 lg:mt-[calc(25*var(--u))] lg:gap-[calc(21*var(--u))]">
+            <span className="size-[15px] shrink-0 rounded-[4px] bg-foreground lg:size-[calc(17*var(--u))] lg:rounded-[calc(4*var(--u))]" />
+            <span className="text-[28px] font-bold lg:text-[calc(32*var(--u))]">
               Безкоштовний урок
             </span>
           </div>
 
-          <dl className="mt-8 space-y-6 lg:mt-10">
+          <dl className="mt-8 space-y-6 lg:mt-[calc(32*var(--u))] lg:space-y-[calc(18*var(--u))]">
             <div>
               <dt className="text-[14px] tracking-[-0.01em] text-muted">
                 / про що
               </dt>
-              <dd className="mt-1.5 text-[22px] leading-[1.2] lg:text-[32px]">
-                Пояснює як влаштована сфера і де тут гроші
+              {/* Mobile breaks before "і де тут гроші"; desktop keeps one line. */}
+              <dd className="mt-1.5 text-[22px] leading-[1.2] whitespace-pre-line lg:mt-0 lg:text-[calc(32*var(--u))] lg:whitespace-normal">
+                {"Пояснює як влаштована сфера\nі де тут гроші"}
               </dd>
             </div>
             <div>
               <dt className="text-[14px] tracking-[-0.01em] text-muted">
                 / тривалість
               </dt>
-              <dd className="mt-1.5 text-[22px] lg:text-[32px]">40 хв</dd>
+              <dd className="mt-1.5 text-[22px] leading-[1.2] lg:mt-0 lg:text-[calc(32*var(--u))]">
+                40 хв
+              </dd>
             </div>
           </dl>
         </div>
@@ -128,7 +131,7 @@ export function Lesson() {
 
             {/* Play button (decorative — the video does not play) */}
             <span className="pointer-events-none absolute inset-0 grid place-items-center">
-              <span className="grid size-[76px] place-items-center rounded-full bg-white text-[#262626] shadow-lg transition-transform duration-300 group-hover:scale-105 lg:size-[92px]">
+              <span className="grid size-[76px] place-items-center rounded-full bg-white text-[#262626] shadow-lg transition-transform duration-300 group-hover:scale-110 lg:size-[calc(149*var(--u))]">
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
@@ -137,7 +140,7 @@ export function Lesson() {
                   strokeLinejoin="round"
                   strokeLinecap="round"
                   aria-hidden="true"
-                  className="size-10 translate-x-0.5 lg:size-15"
+                  className="size-10 translate-x-0.5 lg:size-[calc(97*var(--u))]"
                 >
                   <path d="M9 6.5 18.5 12 9 17.5Z" />
                 </svg>
@@ -170,17 +173,18 @@ export function Lesson() {
               placeholder="@Твій Telegram"
               value={telegram}
               onChange={(e) => setTelegram(e.target.value)}
-              className="h-[70px] w-full rounded-[16px] border border-white bg-transparent px-6 text-center text-[20px] text-foreground placeholder:text-white focus:border-white/40 focus:outline-none sm:w-[340px]"
+              className="h-[70px] w-full rounded-[16px] border border-white bg-transparent px-6 text-center text-[20px] text-foreground placeholder:text-white focus:border-white/40 focus:outline-none sm:pr-[calc(343*var(--u))] lg:text-[calc(22*var(--u))]"
             />
-            {/* Button — full-width on mobile, inset on the right on desktop */}
+            {/* Button — full-width on mobile; on desktop it sits inside the pill,
+              flush with its right edge, so the two read as one control. */}
             <button
               type="submit"
-              className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink sm:absolute sm:top-0 sm:right-0 sm:bottom-1.5 sm:w-[307px] sm:rounded-[12px]"
+              className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink sm:absolute sm:inset-y-0 sm:right-0 sm:w-[calc(307*var(--u))] sm:rounded-[12px] lg:pl-[calc(39*var(--u))]"
             >
               <span className="text-[22px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
                 {submitted ? "НАДІСЛАНО" : "ОТРИМАТИ УРОК"}
               </span>
-              <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-[#2b2b2b] text-white transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95">
+              <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-[#262626] text-white transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95">
                 {submitted ? (
                   <CheckIcon className="size-[18px]" />
                 ) : (

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -38,18 +39,26 @@ const LEGAL_LINKS = [
 ];
 
 const linkCls = "transition-opacity hover:opacity-70";
-const headingCls = "mb-6 text-[14px] text-muted lg:mb-8";
-const itemCls = "text-[18px] leading-snug lg:text-[22px]";
+const headingCls =
+  "mb-6 text-[14px] text-muted lg:mb-[calc(14*var(--u))] lg:text-[calc(14*var(--u))]";
+const itemCls =
+  "text-[18px] leading-snug lg:text-[calc(22*var(--u))] lg:leading-[1.41]";
 
 function Logo() {
   return (
-    <Image
-      src="/hero/logo.svg"
-      alt="QUANTUM"
-      width={207}
-      height={41}
-      className="h-[36px] w-auto lg:h-[40px]"
-    />
+    <Link
+      href="/"
+      aria-label="QUANTUM — на головну"
+      className="inline-block transition-opacity hover:opacity-80"
+    >
+      <Image
+        src="/hero/logo.svg"
+        alt="QUANTUM"
+        width={207}
+        height={41}
+        className="h-[36px] w-auto lg:h-[calc(42*var(--u))]"
+      />
+    </Link>
   );
 }
 
@@ -61,9 +70,9 @@ function LinkNav({
   links: { label: string; href: string }[];
 }) {
   return (
-    <nav className="flex flex-col">
+    <nav className="flex flex-col lg:pt-[calc(13*var(--u))]">
       <p className={headingCls}>{title}</p>
-      <ul className="space-y-3">
+      <ul className="space-y-3 lg:space-y-0">
         {links.map((l) => (
           <li key={l.label}>
             <a href={l.href} className={`${itemCls} ${linkCls}`}>
@@ -78,7 +87,7 @@ function LinkNav({
 
 function Contacts() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col lg:pt-[calc(13*var(--u))]">
       <p className={headingCls}>/ контакти</p>
       <a
         href="https://t.me/quantum_info"
@@ -88,24 +97,24 @@ function Contacts() {
       >
         @quantum_info
       </a>
-      <div className="mt-6 flex gap-3">
+      <div className="mt-6 flex gap-3 lg:mt-[calc(16*var(--u))] lg:gap-[calc(8*var(--u))]">
         <a
           href="https://instagram.com"
           target="_blank"
           rel="noreferrer"
           aria-label="Instagram"
-          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#2b2b2b] transition-opacity hover:opacity-85"
+          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#262626] transition-opacity hover:opacity-85 lg:size-[calc(40*var(--u))] lg:rounded-[calc(10*var(--u))]"
         >
-          <InstagramIcon className="size-6" />
+          <InstagramIcon className="size-6 lg:size-[calc(24*var(--u))]" />
         </a>
         <a
           href="https://t.me/quantum_info"
           target="_blank"
           rel="noreferrer"
           aria-label="Telegram"
-          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#2b2b2b] transition-opacity hover:opacity-85"
+          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#262626] transition-opacity hover:opacity-85 lg:size-[calc(40*var(--u))] lg:rounded-[calc(10*var(--u))]"
         >
-          <TelegramIcon className="size-6" />
+          <TelegramIcon className="size-6 lg:size-[calc(24*var(--u))]" />
         </a>
       </div>
     </div>
@@ -114,7 +123,7 @@ function Contacts() {
 
 function Copyright() {
   return (
-    <p className="text-[14px] whitespace-nowrap text-muted lg:text-[13px]">
+    <p className="text-[14px] whitespace-nowrap text-muted lg:text-[calc(13*var(--u))]">
       © 2026 Quantum.
       <br className="lg:hidden" /> Всі права захищені.
     </p>
@@ -123,8 +132,8 @@ function Copyright() {
 
 export function Footer() {
   return (
-    <footer className="bg-[#2b2b2b] text-foreground">
-      <div className="mx-auto max-w-[1920px] px-5 py-14 lg:px-[70px] lg:py-[70px]">
+    <footer className="footer-bg text-foreground">
+      <div className="mx-auto max-w-[1920px] px-5 py-14 lg:px-[calc(70*var(--u))] lg:pt-[calc(68*var(--u))] lg:pb-[calc(63*var(--u))]">
         <div className="lg:hidden">
           <Logo />
           <div className="mt-14 flex gap-6 min-[420px]:gap-[50px]">
@@ -141,8 +150,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="hidden lg:flex lg:items-stretch lg:justify-between lg:gap-10">
-          <div className="flex flex-col items-start justify-between gap-10">
+        <div className="hidden lg:flex lg:items-stretch lg:justify-between lg:gap-[calc(40*var(--u))]">
+          <div className="flex flex-col items-start justify-between gap-10 lg:gap-[calc(40*var(--u))]">
             <Logo />
             <Copyright />
           </div>

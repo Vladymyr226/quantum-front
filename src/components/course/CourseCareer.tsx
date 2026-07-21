@@ -113,7 +113,10 @@ function SaveButton({ jobKey }: { jobKey: string }) {
         saved ? "text-ink" : "text-ink/55 hover:text-ink"
       }`}
     >
-      <HeartIcon className="size-[18px]" filled={saved} />
+      <HeartIcon
+        className="size-[18px] lg:size-[calc(22*var(--u))]"
+        filled={saved}
+      />
       {saved ? "Збережено" : "Зберегти"}
     </button>
   );
@@ -159,8 +162,10 @@ function TopBadge({ kind }: { kind: CareerBadge }) {
 }
 
 function JobCard({ job }: { job: CareerJob }) {
+  const hasBadges = Boolean(job.badges && job.badges.length > 0);
+
   return (
-    <div className="flex h-full flex-col rounded-[18px] bg-white p-7 text-ink shadow-[0_30px_60px_-24px_rgba(0,0,0,0.5)] lg:p-8">
+    <div className="flex h-full flex-col rounded-[18px] bg-white p-7 text-ink shadow-[0_30px_60px_-24px_rgba(0,0,0,0.5)] lg:rounded-[calc(12*var(--u))] lg:p-[calc(40*var(--u))]">
       {job.badges && job.badges.length > 0 && (
         <div className="mb-4 flex flex-wrap gap-2">
           {job.badges.map((b) => (
@@ -169,13 +174,13 @@ function JobCard({ job }: { job: CareerJob }) {
         </div>
       )}
 
-      <h4 className="text-[22px] leading-[1.25] font-bold text-ink lg:text-[25px]">
+      <h4 className="text-[22px] leading-[1.25] font-bold text-ink lg:text-[calc(33*var(--u))] lg:leading-[calc(42*var(--u))]">
         {job.title}
       </h4>
 
-      <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[16px]">
+      <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[16px] lg:mt-[calc(18*var(--u))] lg:text-[calc(20*var(--u))]">
         <span className="inline-flex items-center gap-2 font-medium text-ink">
-          <HryvniaIcon className="size-[20px] text-[17px] text-ink/45" />
+          <HryvniaIcon className="size-[20px] text-[17px] text-ink/45 lg:size-[calc(25*var(--u))] lg:text-[calc(21*var(--u))]" />
           {job.salary}
         </span>
         {job.salaryNote && (
@@ -185,16 +190,18 @@ function JobCard({ job }: { job: CareerJob }) {
         )}
       </div>
 
-      <div className="mt-3 flex items-center gap-2 text-[16px] text-ink/70">
-        <CityIcon className="size-[20px] text-ink/45" />
+      <div className="mt-3 flex items-center gap-2 text-[16px] text-ink/70 lg:mt-[calc(8*var(--u))] lg:text-[calc(20*var(--u))]">
+        <CityIcon className="size-[20px] text-ink/45 lg:size-[calc(25*var(--u))]" />
         {job.location}
       </div>
 
-      <p className="mt-5 line-clamp-3 text-[15px] leading-[1.6] text-ink/55 lg:line-clamp-4 lg:text-[16px]">
+      <p
+        className={`mt-5 line-clamp-3 text-[15px] leading-[1.6] text-ink/55 lg:mt-[calc(21*var(--u))] lg:text-[calc(19.5*var(--u))] lg:leading-[calc(29*var(--u))] ${hasBadges ? "lg:line-clamp-2" : ""}`}
+      >
         {job.description}
       </p>
 
-      <div className="mt-auto flex items-center justify-between pt-6 text-[14px] text-ink/45">
+      <div className="mt-auto flex items-center justify-between pt-6 text-[14px] text-ink/45 lg:pt-[calc(32*var(--u))] lg:text-[calc(19.5*var(--u))]">
         <span>{job.posted ?? " "}</span>
         <SaveButton jobKey={job.title} />
       </div>
@@ -224,16 +231,16 @@ export function CourseCareer({
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-[1600px] flex-col px-5 py-14 lg:min-h-[900px] lg:px-10 lg:py-24">
+      <div className="relative z-10 mx-auto flex max-w-[1600px] flex-col px-5 py-14 lg:min-h-[calc(1080*var(--u))] lg:max-w-none lg:px-[calc(67*var(--u))] lg:pt-[calc(138*var(--u))] lg:pb-[calc(149*var(--u))]">
         <div className="max-w-[560px]">
-          <h2 className="font-heading text-[38px] leading-[0.98] font-bold tracking-[-0.01em] uppercase lg:text-[54px]">
+          <h2 className="font-heading text-[38px] leading-[0.98] font-bold tracking-[-0.01em] uppercase lg:-ml-[calc(6*var(--u))] lg:text-[calc(70*var(--u))] lg:leading-[calc(77*var(--u))] lg:tracking-[-0.1em]">
             {heading.map((line) => (
               <span key={line} className="block">
                 {line}
               </span>
             ))}
           </h2>
-          <p className="mt-4 max-w-[350px] text-[15px] leading-[1.4] text-white/80">
+          <p className="mt-4 max-w-[350px] text-[15px] leading-[1.4] text-white/80 lg:mt-[calc(12*var(--u))] lg:max-w-[calc(500*var(--u))] lg:text-[calc(22*var(--u))] lg:leading-[calc(24*var(--u))]">
             {subtitle.map((run, i) =>
               run.bold ? (
                 <strong key={i} className="font-semibold text-white">
@@ -249,7 +256,7 @@ export function CourseCareer({
         <div className="h-[220px] shrink-0 lg:hidden" />
 
         <div className="mt-8 flex flex-col-reverse gap-6 lg:mt-auto lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <div className="relative h-[334px] w-full lg:h-[348px] lg:max-w-[600px]">
+          <div className="relative h-[334px] w-full lg:h-[calc(425*var(--u))] lg:max-w-[calc(771*var(--u))]">
             {positions.map((position, i) => (
               <div
                 key={i}
@@ -265,9 +272,11 @@ export function CourseCareer({
             ))}
           </div>
 
-          <div className="w-full rounded-[18px] bg-black/35 p-6 backdrop-blur-md lg:max-w-[430px] lg:p-8">
-            <p className="text-[13px] text-white">{positionsTitle}</p>
-            <ul className="mt-4 space-y-3.5 lg:mt-6 lg:space-y-4">
+          <div className="w-full rounded-[18px] bg-black/35 p-6 backdrop-blur-md lg:-mr-[calc(67*var(--u))] lg:h-[calc(426*var(--u))] lg:w-[calc(741*var(--u))] lg:max-w-none lg:rounded-r-none lg:px-[calc(71*var(--u))] lg:pt-[calc(50*var(--u))] lg:pb-0">
+            <p className="text-[13px] text-white lg:text-[calc(22*var(--u))]">
+              {positionsTitle}
+            </p>
+            <ul className="mt-4 space-y-3.5 lg:mt-[calc(32*var(--u))] lg:space-y-[calc(17*var(--u))]">
               {positions.map((position, i) => {
                 const isActive = i === active;
                 return (
@@ -276,7 +285,7 @@ export function CourseCareer({
                       type="button"
                       onClick={() => setActive(i)}
                       aria-pressed={isActive}
-                      className={`text-left text-[18px] leading-[1.2] transition-colors lg:text-[22px] ${
+                      className={`text-left text-[18px] leading-[1.2] transition-colors lg:text-[calc(32*var(--u))] ${
                         isActive
                           ? "text-white"
                           : "text-white/55 hover:text-white/85"

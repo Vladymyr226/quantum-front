@@ -7,17 +7,17 @@ import type { CourseAudienceData, CourseAudienceItem } from "@/content/courses";
 
 function AudienceCard({ item }: { item: CourseAudienceItem }) {
   return (
-    <div className="relative aspect-[5/7] w-[320px] shrink-0 overflow-hidden rounded-[20px] bg-white/5 lg:w-[380px]">
+    <div className="relative aspect-[5/7] w-[320px] shrink-0 overflow-hidden rounded-[20px] bg-white/5 lg:aspect-[403/541] lg:w-[calc(403*var(--u))] lg:rounded-[calc(20*var(--u))]">
       <Image
         src={item.image}
         alt=""
         fill
         draggable={false}
-        sizes="(max-width: 1024px) 320px, 380px"
+        sizes="(max-width: 1024px) 320px, 403px"
         className="object-cover"
       />
-      <div className="absolute inset-x-0 bottom-0 bg-black/60 px-5 py-6 text-center backdrop-blur-md lg:py-7">
-        <p className="font-sans text-[17px] leading-[1.3] font-normal whitespace-pre-line text-white lg:text-[20px]">
+      <div className="absolute inset-x-0 bottom-0 bg-black/60 px-5 py-6 text-center backdrop-blur-md lg:px-[calc(24*var(--u))] lg:pt-[calc(39*var(--u))] lg:pb-[calc(29*var(--u))]">
+        <p className="font-sans text-[17px] leading-[1.3] font-normal whitespace-pre-line text-white lg:text-[calc(32*var(--u))]">
           {item.caption}
         </p>
       </div>
@@ -134,20 +134,20 @@ export function CourseAudience({ heading, items }: CourseAudienceData) {
   }, []);
 
   return (
-    <section className="-mt-px overflow-hidden bg-[#262626] py-20 text-white lg:py-[100px]">
-      <h2 className="px-5 text-center font-heading text-[38px] leading-[1.05] font-bold tracking-[-0.01em] text-balance uppercase lg:text-[56px]">
+    <section className="-mt-px overflow-hidden bg-[#262626] py-20 text-white lg:pt-[calc(135*var(--u))] lg:pb-[calc(144*var(--u))]">
+      <h2 className="px-5 text-center font-heading text-[38px] leading-[1.05] font-bold tracking-[-0.01em] text-balance uppercase lg:text-[calc(68*var(--u))] lg:tracking-[-0.02em]">
         {heading}
       </h2>
 
       <div
         ref={trackRef}
         onDragStart={(e) => e.preventDefault()}
-        className="mt-12 flex w-max cursor-grab touch-pan-y [will-change:transform] select-none active:cursor-grabbing lg:mt-16"
+        className="mt-12 flex w-max cursor-grab touch-pan-y [will-change:transform] select-none active:cursor-grabbing lg:mt-[calc(71*var(--u))]"
       >
         {loop.map((item, i) => (
           <div
             key={i}
-            className="mr-4 shrink-0 lg:mr-6"
+            className="mr-4 shrink-0 lg:mr-[calc(18*var(--u))]"
             aria-hidden={i >= items.length}
           >
             <AudienceCard item={item} />

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter_Tight } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SmoothHashScroll } from "@/components/ui/SmoothHashScroll";
 
 const interTight = Inter_Tight({
   subsets: ["latin", "cyrillic"],
@@ -45,6 +46,7 @@ export default function RootLayout({
       className={`${interTight.variable} ${aktivGroteskEx.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <SmoothHashScroll />
         {children}
       </body>
     </html>
