@@ -40,17 +40,23 @@ export function CourseApply({ slug, subtitle }: CourseApplyProps) {
     if (status === "submitting") return;
     setStatus("submitting");
 
-    const payload = { course: slug, name, telegram, phone };
+    const payload = {
+      course: slug,
+      name,
+      telegram,
+      phone,
+      formType: "CourseApply",
+    };
 
     try {
-      // TODO: connect the per-course application endpoint here, e.g.
-      //   const res = await fetch("/api/apply", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify(payload),
-      //   });
-      //   if (!res.ok) throw new Error("Request failed");
-      void payload;
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+
       router.push("/thanks");
     } catch {
       setStatus("error");

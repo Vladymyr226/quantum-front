@@ -42,9 +42,28 @@ export function FinalCta() {
   const [telegram, setTelegram] = useState("");
   const [phone, setPhone] = useState("");
 
-  function handleSubmit(e: FormEvent) {
+  const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    router.push("/thanks");
+    if (status === "submitting") return;
+    setStatus("submitting");
+
+    const payload = { name, telegram, phone, formType: "FinalCta" };
+
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+
+      router.push("/thanks");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const inputCls =
@@ -77,7 +96,8 @@ export function FinalCta() {
             placeholder="Ім'я"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={ inputCls}
+            className={inputCls}
+            required
           />
           <input
             type="text"
@@ -85,6 +105,7 @@ export function FinalCta() {
             value={telegram}
             onChange={(e) => setTelegram(e.target.value)}
             className={`${inputCls} mt-[-20px]`}
+            required
           />
           <input
             type="tel"
@@ -92,15 +113,22 @@ export function FinalCta() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className={`${inputCls} mt-[-20px]`}
+            required
           />
+          {status === "error" && (
+            <p className="text-sm text-red-600">
+              Помилка відправки. Спробуйте ще раз.
+            </p>
+          )}
 
           {/* Same button as the Lesson form (inverted for the light section) */}
           <button
             type="submit"
-            className="group relative mt-8 flex h-[70px] w-full lg:w-[280px] items-center overflow-hidden rounded-[16px] bg-ink pr-[64px] pl-7 text-white"
+            disabled={status === "submitting"}
+            className="group relative mt-8 flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-ink pr-[64px] pl-7 text-white disabled:opacity-70 lg:w-[280px]"
           >
             <span className="text-[22px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
-              НАДІСЛАТИ
+              {status === "submitting" ? "ВІДПРАВКА..." : "НАДІСЛАТИ"}
             </span>
             <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-white text-ink transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95">
               <ArrowRight className="size-[18px]" />

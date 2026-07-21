@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { type FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function ArrowRight({ className }: { className?: string }) {
   return (
@@ -54,20 +55,43 @@ function CloseIcon({ className }: { className?: string }) {
 /**
  * "Що таке афілейт маркетинг?" — free-lesson section (dark block).
  * Clicking the video reveals a caption (the video itself does not play).
- * Figma: PC 30:103, MOB 30:583.
+ * PC 30:103, MOB 30:583.
  */
 export function Lesson() {
+  const router = useRouter();
   const [showCaption, setShowCaption] = useState(false);
   const [telegram, setTelegram] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [showThanks, setShowThanks] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
 
-  // Stub — no real backend yet. "Sends" the Telegram handle from the input,
-  // swaps the button (text + icon) and shows the thank-you popup.
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
-    setShowThanks(true);
+    if (status === "submitting") return;
+    setStatus("submitting");
+
+    const payload = {
+      name: "Клієнт з уроку",
+      phone: "Не вказано",
+      telegram,
+      formType: "Lesson",
+    };
+
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+
+      setSubmitted(true);
+      setShowThanks(true);
+      setStatus("idle");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -98,7 +122,6 @@ export function Lesson() {
               <dt className="text-[14px] tracking-[-0.01em] text-muted">
                 / про що
               </dt>
-              {/* Mobile breaks before "і де тут гроші"; desktop keeps one line. */}
               <dd className="mt-1.5 text-[22px] leading-[1.2] whitespace-pre-line lg:mt-0 lg:text-[calc(32*var(--u))] lg:whitespace-normal">
                 {"Пояснює як влаштована сфера\nі де тут гроші"}
               </dd>
@@ -167,22 +190,25 @@ export function Lesson() {
             onSubmit={handleSubmit}
             className="relative flex w-full max-w-[626px] flex-col gap-3 sm:block"
           >
-            {/* Input — full-width pill; on desktop the button sits inside on the right */}
             <input
               type="text"
               placeholder="@Твій Telegram"
               value={telegram}
               onChange={(e) => setTelegram(e.target.value)}
               className="h-[70px] w-full rounded-[16px] border border-white bg-transparent px-6 text-center text-[20px] text-foreground placeholder:text-white focus:border-white/40 focus:outline-none sm:pr-[calc(343*var(--u))] lg:text-[calc(22*var(--u))]"
+              required
             />
-            {/* Button — full-width on mobile; on desktop it sits inside the pill,
-              flush with its right edge, so the two read as one control. */}
             <button
               type="submit"
-              className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink sm:absolute sm:inset-y-0 sm:right-0 sm:w-[calc(307*var(--u))] sm:rounded-[12px] lg:pl-[calc(39*var(--u))]"
+              disabled={status === "submitting"}
+              className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink disabled:opacity-70 sm:absolute sm:inset-y-0 sm:right-0 sm:w-[calc(307*var(--u))] sm:rounded-[12px] lg:pl-[calc(39*var(--u))]"
             >
               <span className="text-[22px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
-                {submitted ? "НАДІСЛАНО" : "ОТРИМАТИ УРОК"}
+                {status === "submitting"
+                  ? "ВІДПРАВКА..."
+                  : submitted
+                    ? "НАДІСЛАНО"
+                    : "ОТРИМАТИ УРОК"}
               </span>
               <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-[#262626] text-white transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95">
                 {submitted ? (
@@ -193,10 +219,15 @@ export function Lesson() {
               </i>
             </button>
           </form>
+          {status === "error" && (
+            <p className="mt-2 text-sm text-red-400">
+              Помилка відправки. Спробуйте ще раз.
+            </p>
+          )}
         </div>
       </div>
 
-      {/* Thank-you toast (stub submit) — bottom-right on desktop, bottom on mobile */}
+      {/* Thank-you toast */}
       {showThanks && (
         <div
           role="status"
