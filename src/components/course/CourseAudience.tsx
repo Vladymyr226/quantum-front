@@ -12,6 +12,7 @@ function AudienceCard({ item }: { item: CourseAudienceItem }) {
         src={item.image}
         alt=""
         fill
+        quality={90}
         draggable={false}
         sizes="(max-width: 1024px) 320px, 403px"
         className="object-cover"

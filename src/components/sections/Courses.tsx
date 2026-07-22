@@ -113,6 +113,7 @@ function PhotoStack({
           src={src}
           alt=""
           fill
+          quality={90}
           sizes={sizes}
           className={`object-cover transition-opacity duration-100 ${
             i === cur ? "opacity-100" : "opacity-0"

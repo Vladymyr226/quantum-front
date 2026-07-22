@@ -88,6 +88,7 @@ export type CourseCareerData = {
   positionsTitle: string;
   image: string;
   positions: CareerPosition[];
+  autoRotate?: boolean;
 };
 
 export type CourseApplyData = {
@@ -501,6 +502,7 @@ export const courses: Course[] = [
       ],
       positionsTitle: "Позиції на яких ти можеш працювати",
       image: "/courses/affiliate/career/bg.png",
+      autoRotate: true,
       positions: [
         {
           label: "Афілейт менеджер — від $800/міс",
@@ -697,6 +699,7 @@ export const courses: Course[] = [
       ],
       positionsTitle: "Позиції на яких ти можеш працювати",
       image: "/courses/smm/career/bg.png",
+      autoRotate: true,
       positions: [
         {
           label: "SMM-спеціаліст — від $500/міс за 1 проєкт",

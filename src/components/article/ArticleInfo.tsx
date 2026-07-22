@@ -117,6 +117,7 @@ export function ArticleInfo({
             alt={imageAlt}
             width={1200}
             height={600}
+            quality={90}
             priority
             className="aspect-[2/1] w-full object-cover"
           />

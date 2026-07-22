@@ -52,6 +52,7 @@ function StackedCard({ task, index }: { task: CourseTask; index: number }) {
           src={task.image}
           alt={task.imageAlt}
           fill
+          quality={90}
           sizes="100vw"
           className="object-contain"
         />
@@ -91,6 +92,7 @@ function ScatterCard({
           src={task.image}
           alt={task.imageAlt}
           fill
+          quality={90}
           sizes="25vw"
           className="object-contain"
         />

@@ -31,6 +31,7 @@ export function CourseHeroGallery({
           src={src}
           alt={i === 0 ? alt : ""}
           fill
+          quality={90}
           sizes="(max-width: 1024px) 100vw, 38vw"
           priority={i === 0}
           className={`object-cover transition-opacity duration-100 ${

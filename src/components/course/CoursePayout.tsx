@@ -73,6 +73,7 @@ export function CoursePayout({
               src={image}
               alt={imageAlt}
               fill
+              quality={90}
               sizes="(max-width: 1024px) 100vw, 29vw"
               className="object-cover"
             />

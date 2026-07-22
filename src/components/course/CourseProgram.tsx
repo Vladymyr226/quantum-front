@@ -18,7 +18,7 @@ function ProgramRow({
       <h3 className="col-start-2 row-start-1 font-heading text-[32px] leading-[0.95] font-bold tracking-[-0.02em] text-ink uppercase lg:text-center lg:text-[clamp(42px,4.8vw,72px)]">
         {item.title}
       </h3>
-      <p className="col-start-2 row-start-2 mt-3 text-[13px] leading-[1.4] font-normal text-ink/65 lg:col-start-3 lg:row-start-1 lg:mt-0 lg:text-[14px]">
+      <p className="col-start-2 row-start-2 mt-3 text-[13px] leading-[1.4] font-normal text-[#262626] lg:col-start-3 lg:row-start-1 lg:mt-0 lg:text-[14px]">
         {item.description}
       </p>
     </article>

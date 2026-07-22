@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 
 import type {
@@ -215,8 +215,21 @@ export function CourseCareer({
   positionsTitle,
   image,
   positions,
+  autoRotate,
 }: CourseCareerData) {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (!autoRotate || paused || positions.length <= 1) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setActive((a) => (a + 1) % positions.length);
+    }, 5000);
+    return () => window.clearInterval(id);
+  }, [autoRotate, paused, positions.length]);
+
+  const listPositions = autoRotate ? positions.slice(0, 1) : positions;
 
   return (
     <section className="relative -mt-px overflow-hidden bg-[#0a0a0a] text-white">
@@ -226,6 +239,7 @@ export function CourseCareer({
           alt=""
           fill
           priority
+          quality={90}
           sizes="100vw"
           className="object-cover object-center grayscale"
         />
@@ -256,12 +270,20 @@ export function CourseCareer({
         <div className="h-[220px] shrink-0 lg:hidden" />
 
         <div className="mt-8 flex flex-col-reverse gap-6 lg:mt-auto lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <div className="relative h-[334px] w-full lg:h-[calc(425*var(--u))] lg:max-w-[calc(771*var(--u))]">
+          <div
+            className="relative h-[334px] w-full lg:h-[calc(425*var(--u))] lg:max-w-[calc(771*var(--u))]"
+            onMouseEnter={autoRotate ? () => setPaused(true) : undefined}
+            onMouseLeave={autoRotate ? () => setPaused(false) : undefined}
+          >
             {positions.map((position, i) => (
               <div
                 key={i}
                 aria-hidden={i !== active}
-                className={`absolute inset-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                className={`absolute inset-0 transition-[opacity,transform] motion-reduce:transition-none ${
+                  autoRotate
+                    ? "duration-[900ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+                    : "duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                } ${
                   i === active
                     ? "z-10 scale-100 opacity-100"
                     : "pointer-events-none z-0 scale-[0.98] opacity-0"
@@ -272,24 +294,30 @@ export function CourseCareer({
             ))}
           </div>
 
-          <div className="w-full rounded-[18px] bg-black/35 p-6 backdrop-blur-md lg:-mr-[calc(67*var(--u))] lg:h-[calc(426*var(--u))] lg:w-[calc(741*var(--u))] lg:max-w-none lg:rounded-r-none lg:px-[calc(71*var(--u))] lg:pt-[calc(50*var(--u))] lg:pb-0">
+          <div
+            className={`w-full rounded-[18px] bg-black/35 p-6 backdrop-blur-md lg:-mr-[calc(67*var(--u))] lg:w-[calc(741*var(--u))] lg:max-w-none lg:rounded-r-none lg:px-[calc(71*var(--u))] lg:pt-[calc(50*var(--u))] ${
+              autoRotate
+                ? "lg:pb-[calc(50*var(--u))]"
+                : "lg:h-[calc(426*var(--u))] lg:pb-0"
+            }`}
+          >
             <p className="text-[13px] text-white lg:text-[calc(22*var(--u))]">
               {positionsTitle}
             </p>
             <ul className="mt-4 space-y-3.5 lg:mt-[calc(32*var(--u))] lg:space-y-[calc(17*var(--u))]">
-              {positions.map((position, i) => {
-                const isActive = i === active;
+              {listPositions.map((position, i) => {
+                const isActive = autoRotate || i === active;
                 return (
                   <li key={position.label}>
                     <button
                       type="button"
-                      onClick={() => setActive(i)}
+                      onClick={autoRotate ? undefined : () => setActive(i)}
                       aria-pressed={isActive}
                       className={`text-left text-[18px] leading-[1.2] transition-colors lg:text-[calc(32*var(--u))] ${
                         isActive
                           ? "text-white"
                           : "text-white/55 hover:text-white/85"
-                      }`}
+                      } ${autoRotate ? "cursor-default" : ""}`}
                     >
                       {position.label}
                     </button>

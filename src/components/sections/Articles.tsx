@@ -11,14 +11,14 @@ type Article = {
 
 const ARTICLES: Article[] = [
   {
-    img: "/marketing/Frame2.jpg",
+    img: "/marketing/Frame2.png",
     alt: "Еволюція людини до афілейт-маркетолога за ноутбуком",
     title: "Як з'явився\nафілейт маркетинг",
     desc: "Історія сфери яка змінила діджитал",
     href: "/articles/arbitrage-history",
   },
   {
-    img: "/marketing/Frame3.jpg",
+    img: "/marketing/Frame3.png",
     alt: "Товари для реклами — худі, протеїн, гаджети",
     title: "Гід по афілейт\nмаркетингу",
     desc: "Все що потрібно знати перед стартом",
@@ -44,6 +44,7 @@ export function Articles() {
                   src={a.img}
                   alt={a.alt}
                   fill
+                  quality={90}
                   sizes="(max-width: 1024px) 100vw, 855px"
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />

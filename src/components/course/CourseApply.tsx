@@ -64,15 +64,15 @@ export function CourseApply({ slug, subtitle }: CourseApplyProps) {
   }
 
   const inputCls =
-    "w-full border-b border-ink/15 bg-transparent py-5 text-center text-[16px] text-ink transition-colors placeholder:text-ink focus:border-ink/45 focus:outline-none lg:text-[18px]";
+    "w-full border-b border-ink/15 bg-transparent py-5 text-center text-[16px] text-ink transition-colors placeholder:text-ink focus:border-ink/45 focus:outline-none lg:py-[calc(20*var(--u))] lg:text-[calc(22*var(--u))] lg:leading-[calc(25*var(--u))]";
 
   return (
     <section id="apply" className="-mt-px scroll-mt-6 bg-white text-ink">
-      <div className="mx-auto max-w-[820px] px-5 py-20 lg:py-28">
-        <h2 className="text-center font-heading text-[38px] leading-[1.0] font-bold tracking-[-0.01em] uppercase lg:text-[clamp(40px,5.6vw,58px)]">
+      <div className="mx-auto max-w-[820px] px-5 py-20 lg:max-w-[calc(820*var(--u))] lg:px-0 lg:pt-[calc(194*var(--u))] lg:pb-[calc(177*var(--u))]">
+        <h2 className="text-center font-heading text-[38px] leading-[1.0] font-bold tracking-[-0.01em] uppercase lg:text-[calc(70*var(--u))] lg:tracking-[-0.05em] lg:whitespace-nowrap">
           Залишити заявку
         </h2>
-        <p className="mx-auto mt-4 max-w-[640px] text-center text-[16px] leading-[1.4] text-ink/70 lg:mt-5 lg:max-w-none lg:text-[18px]">
+        <p className="mx-auto mt-4 max-w-[640px] text-center text-[16px] leading-[1.4] text-ink lg:mt-[calc(13*var(--u))] lg:max-w-none lg:text-[calc(22*var(--u))] lg:leading-[calc(28*var(--u))]">
           {subtitle.split("\n").map((line, i, arr) => (
             <span key={i}>
               {line}
@@ -86,7 +86,10 @@ export function CourseApply({ slug, subtitle }: CourseApplyProps) {
           ))}
         </p>
 
-        <form onSubmit={handleSubmit} className="mt-12 flex flex-col lg:mt-14">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-12 flex flex-col lg:mt-[calc(59*var(--u))]"
+        >
           <input
             type="text"
             name="name"
@@ -117,17 +120,17 @@ export function CourseApply({ slug, subtitle }: CourseApplyProps) {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="group relative mx-auto mt-10 flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-ink pr-[64px] pl-7 text-white lg:w-[280px]"
+            className="group relative mx-auto mt-10 flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-ink pr-[64px] pl-7 text-white lg:mt-[calc(52*var(--u))] lg:h-[calc(70*var(--u))] lg:w-[calc(280*var(--u))] lg:rounded-[calc(16*var(--u))] lg:pr-[calc(64*var(--u))] lg:pl-[calc(28*var(--u))]"
           >
-            <span className="text-[20px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
+            <span className="text-[20px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0 lg:text-[calc(22*var(--u))]">
               {status === "submitting" ? "НАДСИЛАЄМО…" : "НАДІСЛАТИ"}
             </span>
-            <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-white text-ink transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95">
-              <ArrowRight className="size-[18px]" />
+            <i className="absolute top-1.5 right-1.5 bottom-1.5 z-10 grid w-[54px] place-items-center rounded-[10px] bg-white text-ink transition-all duration-500 group-hover:w-[calc(100%-0.75rem)] group-active:scale-95 lg:top-[calc(6*var(--u))] lg:right-[calc(6*var(--u))] lg:bottom-[calc(6*var(--u))] lg:w-[calc(54*var(--u))] lg:rounded-[calc(10*var(--u))]">
+              <ArrowRight className="size-[18px] lg:size-[calc(18*var(--u))]" />
             </i>
           </button>
 
-          <p className="mx-auto mt-6 max-w-[420px] text-center text-[13px] leading-[1.4] text-ink/50 lg:max-w-none lg:text-[14px]">
+          <p className="mx-auto mt-6 max-w-[420px] text-center text-[13px] leading-[1.4] text-ink/50 lg:mt-[calc(15*var(--u))] lg:max-w-none lg:text-[calc(16*var(--u))] lg:leading-[calc(16*var(--u))]">
             Залишаючи заявку ви погоджуєтесь з умовами
             <br />
             <a href="#" className="underline underline-offset-2 hover:text-ink">

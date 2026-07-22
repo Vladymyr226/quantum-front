@@ -145,9 +145,10 @@ export function Lesson() {
             className="group relative block aspect-615/600 w-full overflow-hidden rounded-[16px] bg-black/40"
           >
             <Image
-              src="/marketing/Frame1.jpg"
+              src="/marketing/Frame1.png"
               alt="Безкоштовний урок — що таке афілейт маркетинг"
               fill
+              quality={90}
               sizes="(max-width: 1024px) 100vw, 615px"
               className="object-cover"
             />
