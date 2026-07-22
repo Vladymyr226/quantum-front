@@ -204,7 +204,7 @@ export function Lesson() {
               disabled={status === "submitting"}
               className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink disabled:opacity-70 sm:absolute sm:inset-y-0 sm:right-0 sm:w-[calc(307*var(--u))] sm:rounded-[12px] lg:pl-[calc(39*var(--u))]"
             >
-              <span className="text-[22px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
+              <span className="text-[18px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
                 {status === "submitting"
                   ? "ВІДПРАВКА..."
                   : submitted
