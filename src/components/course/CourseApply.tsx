@@ -22,6 +22,22 @@ function ArrowRight({ className }: { className?: string }) {
   );
 }
 
+const MAX_PHONE_DIGITS = 12;
+function sanitizePhone(value: string) {
+  let digits = 0;
+  let out = "";
+  for (const ch of value) {
+    if (ch >= "0" && ch <= "9") {
+      if (digits >= MAX_PHONE_DIGITS) continue;
+      digits++;
+      out += ch;
+    } else if ("+()- ".includes(ch)) {
+      out += ch;
+    }
+  }
+  return out;
+}
+
 type CourseApplyProps = CourseApplyData & {
   slug: string;
 };
@@ -113,7 +129,7 @@ export function CourseApply({ slug, subtitle }: CourseApplyProps) {
             placeholder="Номер телефону"
             autoComplete="tel"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => setPhone(sanitizePhone(e.target.value))}
             className={inputCls}
           />
 

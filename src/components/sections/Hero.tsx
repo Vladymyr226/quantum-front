@@ -121,8 +121,8 @@ export function Hero() {
               className="mt-[28px] w-full min-w-0 overflow-hidden lg:mt-[calc(29*var(--u))] lg:-ml-[calc(18*var(--u))] lg:w-[calc(100%+18*var(--u))]"
             >
               <svg
-                viewBox="0 27 1097 166"
-                className="block aspect-[1097/166] w-full mix-blend-difference"
+                viewBox="0 27 1097 175"
+                className="block aspect-[1097/172] w-full mix-blend-difference"
                 aria-hidden="true"
               >
                 <text

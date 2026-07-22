@@ -143,25 +143,25 @@ export const courses: Course[] = [
         {
           number: "02",
           title: "Підготувати креатив",
-          image: "/courses/mediabuyer/tasks/2.png",
+          image: "/courses/mediabuyer/tasks/2.jpg",
           imageAlt: "Підготувати креатив",
         },
         {
           number: "03",
           title: "Вибрати готовий сайт",
-          image: "/courses/mediabuyer/tasks/3.png",
+          image: "/courses/mediabuyer/tasks/3.jpg",
           imageAlt: "Вибрати готовий сайт",
         },
         {
           number: "04",
           title: "Налаштувати рекламу",
-          image: "/courses/mediabuyer/tasks/4.png",
+          image: "/courses/mediabuyer/tasks/4.jpg",
           imageAlt: "Налаштувати рекламу",
         },
         {
           number: "05",
           title: "Проаналізувати результати",
-          image: "/courses/mediabuyer/tasks/5.png",
+          image: "/courses/mediabuyer/tasks/5.jpg",
           imageAlt: "Проаналізувати результати",
         },
       ],
@@ -176,7 +176,7 @@ export const courses: Course[] = [
         "з рекламами, клієнт купив товар —",
         "медіабаєр отримав виплату",
       ],
-      image: "/courses/mediabuyer/payout/creative.png",
+      image: "/courses/mediabuyer/payout/creative.jpg",
       imageAlt: "Рекламний креатив CARDIOTENS",
       personIcon: "/courses/mediabuyer/payout/person.svg",
       arrowIcon: "/courses/mediabuyer/payout/arrow.svg",
@@ -192,23 +192,23 @@ export const courses: Course[] = [
       heading: "Для кого цей курс",
       items: [
         {
-          image: "/courses/mediabuyer/audience/1.png",
+          image: "/courses/mediabuyer/audience/1.jpg",
           caption: "Пробував трафік але\nщось пішло не так",
         },
         {
-          image: "/courses/mediabuyer/audience/2.png",
+          image: "/courses/mediabuyer/audience/2.jpg",
           caption: "Переїхав за кордон\nі шукаєш варіанти",
         },
         {
-          image: "/courses/mediabuyer/audience/3.png",
+          image: "/courses/mediabuyer/audience/3.jpg",
           caption: "Мав бізнес,\nале все змінилось",
         },
         {
-          image: "/courses/mediabuyer/audience/4.png",
+          image: "/courses/mediabuyer/audience/4.jpg",
           caption: "Вже в діджиталі\nале хочеш більше",
         },
         {
-          image: "/courses/mediabuyer/audience/5.png",
+          image: "/courses/mediabuyer/audience/5.jpg",
           caption: "Продавав все життя\nі втомився від людей",
         },
       ],
@@ -278,7 +278,7 @@ export const courses: Course[] = [
         },
       ],
       positionsTitle: "Позиції на яких ти можеш працювати",
-      image: "/courses/mediabuyer/career/bg.png",
+      image: "/courses/mediabuyer/career/bg.jpg",
       positions: [
         {
           label: "Асистент медіабаєра — від $500/міс",
@@ -377,25 +377,25 @@ export const courses: Course[] = [
         {
           number: "02",
           title: "Допомогти в організаційних моментах",
-          image: "/courses/affiliate/tasks/2.png",
+          image: "/courses/affiliate/tasks/2.jpg",
           imageAlt: "Допомогти в організаційних моментах",
         },
         {
           number: "03",
           title: "Перевірити результати медіабаєра",
-          image: "/courses/affiliate/tasks/3.png",
+          image: "/courses/affiliate/tasks/3.jpg",
           imageAlt: "Перевірити результати медіабаєра",
         },
         {
           number: "04",
           title: "Допомогти зарахувати винагороду",
-          image: "/courses/affiliate/tasks/4.png",
+          image: "/courses/affiliate/tasks/4.jpg",
           imageAlt: "Допомогти зарахувати винагороду",
         },
         {
           number: "05",
           title: "Розширювати базу партнерів медіабаєрів",
-          image: "/courses/affiliate/tasks/5.png",
+          image: "/courses/affiliate/tasks/5.jpg",
           imageAlt: "Розширювати базу партнерів медіабаєрів",
         },
       ],
@@ -404,23 +404,23 @@ export const courses: Course[] = [
       heading: "Для кого цей курс",
       items: [
         {
-          image: "/courses/affiliate/audience/1.png",
+          image: "/courses/affiliate/audience/1.jpg",
           caption: "Переїхав за кордон і шукаєш варіанти",
         },
         {
-          image: "/courses/affiliate/audience/2.png",
+          image: "/courses/affiliate/audience/2.jpg",
           caption: "Кайфуєш від переговорів і нових знайомств",
         },
         {
-          image: "/courses/affiliate/audience/3.png",
+          image: "/courses/affiliate/audience/3.jpg",
           caption: "Хочеш професію із подорожами по всьому світу",
         },
         {
-          image: "/courses/affiliate/audience/4.png",
+          image: "/courses/affiliate/audience/4.jpg",
           caption: "Хочеш працювати віддалено і сам керувати своїм часом",
         },
         {
-          image: "/courses/affiliate/audience/5.png",
+          image: "/courses/affiliate/audience/5.jpg",
           caption: "Хочеш в афілейт маркетинг але без запуску реклами",
         },
       ],
@@ -501,7 +501,7 @@ export const courses: Course[] = [
         },
       ],
       positionsTitle: "Позиції на яких ти можеш працювати",
-      image: "/courses/affiliate/career/bg.png",
+      image: "/courses/affiliate/career/bg.jpg",
       autoRotate: true,
       positions: [
         {
@@ -589,23 +589,23 @@ export const courses: Course[] = [
       heading: "Для кого цей курс",
       items: [
         {
-          image: "/courses/smm/audience/1.png",
+          image: "/courses/smm/audience/1.jpg",
           caption: "Хочеш вести красиві акаунти і заробляти на цьому",
         },
         {
-          image: "/courses/smm/audience/2.png",
+          image: "/courses/smm/audience/2.jpg",
           caption: "Ведеш SMM але хочеш заробляти більше",
         },
         {
-          image: "/courses/smm/audience/3.png",
+          image: "/courses/smm/audience/3.jpg",
           caption: "Хочеш працювати віддалено і сам керувати своїм часом",
         },
         {
-          image: "/courses/smm/audience/4.png",
+          image: "/courses/smm/audience/4.jpg",
           caption: "Переїхав за кордон і шукаєш варіанти",
         },
         {
-          image: "/courses/smm/audience/5.png",
+          image: "/courses/smm/audience/5.jpg",
           caption: "Мама в декреті і шукаєш дохід з дому",
         },
       ],
@@ -698,7 +698,7 @@ export const courses: Course[] = [
         },
       ],
       positionsTitle: "Позиції на яких ти можеш працювати",
-      image: "/courses/smm/career/bg.png",
+      image: "/courses/smm/career/bg.jpg",
       autoRotate: true,
       positions: [
         {

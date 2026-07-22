@@ -79,7 +79,7 @@ export function CourseHero({
       </header>
 
       <div className="relative z-10 flex flex-1 flex-col px-5 pb-8 lg:contents">
-        <div className="flex min-w-0 flex-col lg:absolute lg:top-[calc(286*var(--u))] lg:left-[calc(72*var(--u))] lg:z-10">
+        <div className="flex min-w-0 flex-col lg:absolute lg:top-[calc(196*var(--u))] lg:bottom-[calc(196*var(--u))] lg:left-[calc(72*var(--u))] lg:z-10 lg:justify-center">
           <ul className="grid w-fit grid-cols-[auto_auto] gap-x-6 gap-y-3 text-[14px] text-white/80 lg:flex lg:w-auto lg:gap-x-[calc(37*var(--u))] lg:text-[calc(22*var(--u))]">
             {tags.map((t) => (
               <li key={t} className="flex items-center gap-2 whitespace-nowrap">

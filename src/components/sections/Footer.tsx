@@ -65,9 +65,11 @@ function Logo() {
 function LinkNav({
   title,
   links,
+  clickable = true,
 }: {
   title: string;
   links: { label: string; href: string }[];
+  clickable?: boolean;
 }) {
   return (
     <nav className="flex flex-col lg:pt-[calc(13*var(--u))]">
@@ -75,9 +77,13 @@ function LinkNav({
       <ul className="space-y-3 lg:space-y-0">
         {links.map((l) => (
           <li key={l.label}>
-            <a href={l.href} className={`${itemCls} ${linkCls}`}>
-              {l.label}
-            </a>
+            {clickable ? (
+              <a href={l.href} className={`${itemCls} ${linkCls}`}>
+                {l.label}
+              </a>
+            ) : (
+              <span className={itemCls}>{l.label}</span>
+            )}
           </li>
         ))}
       </ul>
@@ -90,32 +96,26 @@ function Contacts() {
     <div className="flex flex-col lg:pt-[calc(13*var(--u))]">
       <p className={headingCls}>/ контакти</p>
       <a
-        href="https://t.me/quantum_info"
+        href="https://t.me/quantum_aff"
         target="_blank"
         rel="noreferrer"
         className={`${itemCls} ${linkCls}`}
       >
-        @quantum_info
+        @quantum_aff
       </a>
       <div className="mt-6 flex gap-3 lg:mt-[calc(16*var(--u))] lg:gap-[calc(8*var(--u))]">
-        <a
-          href="https://instagram.com"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Instagram"
-          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#262626] transition-opacity hover:opacity-85 lg:size-[calc(40*var(--u))] lg:rounded-[calc(10*var(--u))]"
+        <span
+          aria-hidden
+          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#262626] lg:size-[calc(40*var(--u))] lg:rounded-[calc(10*var(--u))]"
         >
           <InstagramIcon className="size-6 lg:size-[calc(24*var(--u))]" />
-        </a>
-        <a
-          href="https://t.me/quantum_info"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Telegram"
-          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#262626] transition-opacity hover:opacity-85 lg:size-[calc(40*var(--u))] lg:rounded-[calc(10*var(--u))]"
+        </span>
+        <span
+          aria-hidden
+          className="grid size-11 place-items-center rounded-[10px] bg-white text-[#262626] lg:size-[calc(40*var(--u))] lg:rounded-[calc(10*var(--u))]"
         >
           <TelegramIcon className="size-6 lg:size-[calc(24*var(--u))]" />
-        </a>
+        </span>
       </div>
     </div>
   );
@@ -139,7 +139,11 @@ export function Footer() {
           <div className="mt-14 flex gap-6 min-[420px]:gap-[50px]">
             <div className="flex min-w-0 flex-col gap-12">
               <LinkNav title="/ курси" links={COURSE_LINKS} />
-              <LinkNav title="/ відповідальність" links={LEGAL_LINKS} />
+              <LinkNav
+                title="/ відповідальність"
+                links={LEGAL_LINKS}
+                clickable={false}
+              />
             </div>
             <div className="flex min-w-0 shrink-0 flex-col">
               <Contacts />
@@ -157,7 +161,11 @@ export function Footer() {
           </div>
           <LinkNav title="/ курси" links={COURSE_LINKS} />
           <Contacts />
-          <LinkNav title="/ відповідальність" links={LEGAL_LINKS} />
+          <LinkNav
+            title="/ відповідальність"
+            links={LEGAL_LINKS}
+            clickable={false}
+          />
         </div>
       </div>
     </footer>

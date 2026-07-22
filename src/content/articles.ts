@@ -22,7 +22,7 @@ export const articles: Article[] = [
     slug: "arbitrage-history",
     title: "Як з'явився арбітраж трафіку",
     info: {
-      image: "/articles/arbitrage-history/hero.png",
+      image: "/articles/arbitrage-history/hero.jpg",
       imageAlt:
         "Еволюція: від первісної людини до сучасного арбітражника за ноутбуком",
       title:
@@ -148,7 +148,7 @@ export const articles: Article[] = [
     slug: "affiliate-guide",
     title: "Гід по affiliate marketing",
     info: {
-      image: "/articles/affiliate-guide/hero.png",
+      image: "/articles/affiliate-guide/hero.jpg",
       imageAlt:
         "Товари для реклами: худі, протеїн, пляшка, деталі радіокерованої машинки, фішки",
       title:

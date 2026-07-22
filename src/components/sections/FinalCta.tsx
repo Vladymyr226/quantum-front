@@ -13,6 +13,22 @@ const COURSE_PHOTOS: string[] = [
   ...Array.from({ length: 20 }, (_, i) => `/courses/smm/${pad(i)}.jpg`),
 ];
 
+const MAX_PHONE_DIGITS = 12;
+function sanitizePhone(value: string) {
+  let digits = 0;
+  let out = "";
+  for (const ch of value) {
+    if (ch >= "0" && ch <= "9") {
+      if (digits >= MAX_PHONE_DIGITS) continue;
+      digits++;
+      out += ch;
+    } else if ("+()- ".includes(ch)) {
+      out += ch;
+    }
+  }
+  return out;
+}
+
 function ArrowRight({ className }: { className?: string }) {
   return (
     <svg
@@ -111,7 +127,7 @@ export function FinalCta() {
             type="tel"
             placeholder="Номер телефону"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => setPhone(sanitizePhone(e.target.value))}
             className={`${inputCls} mt-[-20px]`}
             required
           />
