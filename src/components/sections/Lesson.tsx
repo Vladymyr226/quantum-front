@@ -196,13 +196,13 @@ export function Lesson() {
               placeholder="@Твій Telegram"
               value={telegram}
               onChange={(e) => setTelegram(e.target.value)}
-              className="h-[70px] w-full rounded-[16px] border border-white bg-transparent px-6 text-center text-[20px] text-foreground placeholder:text-white focus:border-white/40 focus:outline-none sm:pr-[calc(343*var(--u))] lg:text-[calc(22*var(--u))]"
+              className="h-[70px] w-full rounded-[16px] border border-white bg-transparent px-6 text-center text-[20px] text-foreground placeholder:text-white focus:border-white/40 focus:outline-none sm:pr-[343px] lg:text-[22px]"
               required
             />
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink disabled:opacity-70 sm:absolute sm:inset-y-0 sm:right-0 sm:w-[calc(307*var(--u))] sm:rounded-[12px] lg:pl-[calc(39*var(--u))]"
+              className="group relative flex h-[70px] w-full items-center overflow-hidden rounded-[16px] bg-surface pr-[64px] pl-7 text-ink disabled:opacity-70 sm:absolute sm:inset-y-0 sm:right-0 sm:w-[307px] sm:rounded-[12px] sm:pl-[39px]"
             >
               <span className="text-[18px] font-medium whitespace-nowrap transition-opacity duration-500 group-hover:opacity-0">
                 {status === "submitting"

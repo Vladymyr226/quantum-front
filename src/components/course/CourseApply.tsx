@@ -149,13 +149,13 @@ export function CourseApply({ slug, subtitle }: CourseApplyProps) {
           <p className="mx-auto mt-6 max-w-[420px] text-center text-[13px] leading-[1.4] text-ink/50 lg:mt-[calc(15*var(--u))] lg:max-w-none lg:text-[calc(16*var(--u))] lg:leading-[calc(16*var(--u))]">
             Залишаючи заявку ви погоджуєтесь з умовами
             <br />
-            <a href="#" className="underline underline-offset-2 hover:text-ink">
+            <span className="underline underline-offset-2">
               договору-оферти
-            </a>{" "}
+            </span>{" "}
             і{" "}
-            <a href="#" className="underline underline-offset-2 hover:text-ink">
+            <span className="underline underline-offset-2">
               політикою конфіденційності
-            </a>
+            </span>
             .
           </p>
         </form>

@@ -27,7 +27,7 @@ export function Hero() {
           up pixel-for-pixel. The Q vector then sits between them. */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-[30] bg-[url('/hero/backdrop-mobile.png')] bg-cover bg-[position:50%_50%] bg-no-repeat lg:bg-[url('/hero/backdrop.png')] lg:bg-[length:100%_auto]"
+          className="absolute inset-0 -z-[30] bg-[url('/hero/backdrop-mobile.png')] bg-[length:auto_100%] bg-[position:50%_50%] bg-no-repeat lg:bg-[url('/hero/backdrop.png')] lg:bg-[length:100%_auto]"
         />
 
         {/* Layer 2 — brand Q vector (#F2F2F2), placed *behind* the front portrait
@@ -69,7 +69,7 @@ export function Hero() {
           backdrop, so it re-covers the man and pushes the Q behind him. */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[url('/hero/portrait-mobile.png')] bg-cover bg-[position:50%_50%] bg-no-repeat lg:bg-[url('/hero/portrait-v2.png')] lg:bg-[length:100%_auto]"
+          className="absolute inset-0 -z-10 bg-[url('/hero/portrait-mobile.png')] bg-[length:auto_100%] bg-[position:50%_50%] bg-no-repeat lg:bg-[url('/hero/portrait-v2.png')] lg:bg-[length:100%_auto]"
         />
 
         {/* Content column */}

@@ -154,13 +154,13 @@ export function FinalCta() {
           <p className="mt-2 text-center text-[14px] text-ink/50 lg:text-[16px]">
             Залишаючи заявку ви погоджуєтесь з умовами
             <br />
-            <a href="#" className="underline underline-offset-2 hover:text-ink">
+            <span className="underline underline-offset-2">
               договору-оферти
-            </a>{" "}
+            </span>{" "}
             і{" "}
-            <a href="#" className="underline underline-offset-2 hover:text-ink">
+            <span className="underline underline-offset-2">
               політикою конфіденційності
-            </a>
+            </span>
             .
           </p>
         </form>
